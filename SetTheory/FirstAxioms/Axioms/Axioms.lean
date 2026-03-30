@@ -1,8 +1,11 @@
 import SetTheory.FirstAxioms.Axioms.Definitions
--- 4. We state the Axiom of Extensionality
--- "Two sets are equal if and only if they have the same elements"
-axiom extensionality (A B : ZFCSet) :
-  (∀ x : ZFCSet, x ∈ A ↔ x ∈ B) → A = B
 
--- The Axiom: For any set x, x is not in ∅
-axiom empty_ax { x : ZFCSet } : x ∉ ∅
+axiom extensionality {A B : Set} :
+  (∀ x : Set, x ∈ A ↔ x ∈ B) → A = B
+
+axiom empty : Set
+notation "∅" => empty
+axiom empty_axiom { x : Set } : x ∉ ∅
+
+axiom subset_axiom (A : Set) (P : Set → Prop) :
+  ∃ B : Set, ∀ x : Set, x ∈ B ↔ (x ∈ A ∧ P x)
