@@ -1,13 +1,5 @@
 import SetTheory.FirstAxioms.Axioms.Index
 
-theorem subset_refl (A : Set) : A ⊆ A := by
-  -- Let x be an arbitrary set
-  intro x
-  -- Assume x ∈ A
-  intro h
-  -- We need to prove x ∈ A, which is exactly our assumption
-  exact h
-
 theorem empty_is_subset (A : Set) : ∅ ⊆ A := by
   -- Let x be an arbitrary set, and assume x ∈ ∅
   intro x x_in_empty
