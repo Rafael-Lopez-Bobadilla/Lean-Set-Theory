@@ -2,4 +2,5 @@ import SetTheory.FirstAxioms.Theorems.empty_is_subset
 import SetTheory.FirstAxioms.Theorems.subset_of_itself
 import SetTheory.FirstAxioms.Theorems.intersection
 import SetTheory.FirstAxioms.Theorems.difference
-import SetTheory.FirstAxioms.Theorems.arbitrary_intersection
+import SetTheory.FirstAxioms.Theorems.subset_construction
+import SetTheory.FirstAxioms.Theorems.no_universal_set
