@@ -4,3 +4,4 @@ import SetTheory.FirstAxioms.Theorems.intersection
 import SetTheory.FirstAxioms.Theorems.difference
 import SetTheory.FirstAxioms.Theorems.subset_construction
 import SetTheory.FirstAxioms.Theorems.no_universal_set
+import SetTheory.FirstAxioms.Theorems.arbitrary_intersection
