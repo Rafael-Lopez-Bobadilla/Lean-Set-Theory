@@ -15,12 +15,12 @@ noncomputable def arbitrary_intersection_definition
   Classical.choose (arbitrary_intersection_exists F F_nonempty)
 notation "⋂[" h "] " F => arbitrary_intersection_definition F h
 
-theorem arbitrary_intersection (F: Set) (F_nonempty : ∃ E : Set, E ∈ F) (x: Set):
+theorem arbitrary_intersection {F x: Set} {F_nonempty : ∃ E : Set, E ∈ F}:
   x ∈ (⋂[F_nonempty] F) ↔ ∀ y : Set, y ∈ F → x ∈ y := by
   exact Classical.choose_spec (arbitrary_intersection_exists F F_nonempty) x
 
 theorem arb_int_test (F x: Set) (F_nonempty : ∃ E : Set, E ∈ F) :
   A∈F ∧ x∈(⋂[F_nonempty]F) → x∈A:= by
-  intro h_and
-  have in_all_of_F := (arbitrary_intersection F F_nonempty x).mp h_and.right
-  exact in_all_of_F A h_and.left
+  intro h1
+  have h2: ∀y: Set, y∈F → x∈y := (arbitrary_intersection).mp h1.right
+  exact h2 A h1.left

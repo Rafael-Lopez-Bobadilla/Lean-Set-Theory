@@ -7,8 +7,8 @@ theorem union_of_two_exists (A B: Set) :
   apply Exists.intro union_pair
   intro x
   constructor
-  intro x_in_union_pair
-  have ⟨D, D_in_and⟩ := (union_pair_member x).mp x_in_union_pair
+  intro h1
+  have ⟨D, D_in_and⟩ := (union_pair_member x).mp h1
   have D_in_pair := (pair_member D).mp D_in_and.left
   cases D_in_pair with
   | inl D_is_A =>

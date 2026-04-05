@@ -5,6 +5,6 @@ theorem empty_is_subset (A : Set) : ∅ ⊆ A := by
   intro x x_in_empty
 
 -- Bring our global axiom into the local context for this specific x
-  have x_not_in_empty: x ∉ ∅ := empty_axiom
+  have x_not_in_empty: x ∉ ∅ := empty_axiom x
 -- This is a contradiction, since we have both x ∈ ∅ and x ∉ ∅
   contradiction

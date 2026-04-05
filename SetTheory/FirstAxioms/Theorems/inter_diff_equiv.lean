@@ -6,25 +6,19 @@ theorem inter_diff_equiv (A B C: Set) : A ∩ (B \ C) = (A ∩ B) \ C := by
   apply extensionality
   intro x
   constructor
-  intro x_in_A_int_diff
-  have x_in_A_and_diff := (intersection A (B\C) x).mp x_in_A_int_diff
-  have x_in_A := x_in_A_and_diff.left
-  have x_in_B_and_not_C := (difference B C x).mp x_in_A_and_diff.right
-  have x_in_B := x_in_B_and_not_C.left
+  intro h1
+  have h2: x∈A ∧ x∈(B\C) := (intersection x).mp h1
+  have h3: x∈B ∧ x∉C := (difference x).mp h2.right
   --have x_in_A_and_B: x∈A ∧ x∈B := ⟨x_in_A, x_in_B⟩
-  have x_in_AB_int := (intersection A B x).mpr ⟨x_in_A, x_in_B⟩
-  have x_not_in_C := x_in_B_and_not_C.right
-  have x_in_int_minus_C := (difference (A∩B) C x).mpr ⟨x_in_AB_int, x_not_in_C⟩
-  exact x_in_int_minus_C
-  intro x_in_int_minus_C
-  have x_in_int_and_not_C := (difference (A∩B) C x).mp x_in_int_minus_C
-  have x_in_A_and_B := (intersection A B x).mp x_in_int_and_not_C.left
-  have x_in_A := x_in_A_and_B.left
-  have x_in_B := x_in_A_and_B.right
-  have x_not_in_C := x_in_int_and_not_C.right
-  have x_in_B_minus_C := (difference B C x).mpr ⟨x_in_B, x_not_in_C⟩
-  have x_in_A_int_diff := (intersection A (B\C) x).mpr ⟨x_in_A, x_in_B_minus_C⟩
-  exact x_in_A_int_diff
+  have h5: x∈A∩B := (intersection x).mpr ⟨h2.left, h3.left⟩
+  have h6: x ∈ A∩B\C := (difference x).mpr ⟨h5, h3.right⟩
+  exact h6
+  intro h1
+  have h2: x ∈ A∩B ∧ x ∉ C := (difference x).mp h1
+  have h3:  x ∈ A ∧ x ∈ B := (intersection x).mp h2.left
+  have h4: x ∈ B\C := (difference x).mpr ⟨h3.right, h2.right⟩
+  have h5: x ∈ A∩(B\C) := (intersection x).mpr ⟨h3.left, h4⟩
+  exact h5
 
 theorem inter_diff_equiv_2 (A B C : Set) : A ∩ (B \ C) = (A ∩ B) \ C := by
   apply extensionality

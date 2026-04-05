@@ -9,10 +9,10 @@ noncomputable def difference_operation (A B : Set) : Set :=
   Classical.choose (difference_exists A B)
 infixl:70 "\\" => difference_operation
 
-theorem difference (A B : Set) : ∀ x : Set, x ∈ A\B ↔ x ∈ A ∧ x ∉ B :=
+theorem difference {A B : Set} : ∀ x : Set, x ∈ A\B ↔ x ∈ A ∧ x ∉ B :=
   Classical.choose_spec (difference_exists A B)
 
 theorem diff_test (A B x: Set) : x∈A\B → x ∉ B := by
   intro x_in_int
-  have h_and := (difference A B x).mp x_in_int
-  exact h_and.right
+  have h1: x∈A ∧ x∉B := (difference x).mp x_in_int
+  exact h1.right
