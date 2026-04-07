@@ -7,17 +7,17 @@ theorem inter_diff_equiv (A B C: Set) : A ∩ (B \ C) = (A ∩ B) \ C := by
   intro x
   constructor
   intro h1
-  have h2: x∈A ∧ x∈(B\C) := (intersection x).mp h1
-  have h3: x∈B ∧ x∉C := (difference x).mp h2.right
+  have h2: x∈A ∧ x∈(B\C) := (intersection A (B\C) x).mp h1
+  have h3: x∈B ∧ x∉C := (difference B C x).mp h2.right
   --have x_in_A_and_B: x∈A ∧ x∈B := ⟨x_in_A, x_in_B⟩
-  have h5: x∈A∩B := (intersection x).mpr ⟨h2.left, h3.left⟩
-  have h6: x ∈ A∩B\C := (difference x).mpr ⟨h5, h3.right⟩
+  have h5: x∈A∩B := (intersection A B x).mpr ⟨h2.left, h3.left⟩
+  have h6: x ∈ A∩B\C := (difference (A∩B) C x).mpr ⟨h5, h3.right⟩
   exact h6
   intro h1
-  have h2: x ∈ A∩B ∧ x ∉ C := (difference x).mp h1
-  have h3:  x ∈ A ∧ x ∈ B := (intersection x).mp h2.left
-  have h4: x ∈ B\C := (difference x).mpr ⟨h3.right, h2.right⟩
-  have h5: x ∈ A∩(B\C) := (intersection x).mpr ⟨h3.left, h4⟩
+  have h2: x ∈ A∩B ∧ x ∉ C := (difference (A∩B) C x).mp h1
+  have h3:  x ∈ A ∧ x ∈ B := (intersection A B x).mp h2.left
+  have h4: x ∈ B\C := (difference B C x).mpr ⟨h3.right, h2.right⟩
+  have h5: x ∈ A∩(B\C) := (intersection A (B\C) x).mpr ⟨h3.left, h4⟩
   exact h5
 
 theorem inter_diff_equiv_2 (A B C : Set) : A ∩ (B \ C) = (A ∩ B) \ C := by
