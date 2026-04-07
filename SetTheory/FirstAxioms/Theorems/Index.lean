@@ -6,3 +6,5 @@ import SetTheory.FirstAxioms.Theorems.subset_construction
 import SetTheory.FirstAxioms.Theorems.no_universal_set
 import SetTheory.FirstAxioms.Theorems.arbitrary_intersection
 import SetTheory.FirstAxioms.Theorems.arbitrary_union
+import SetTheory.FirstAxioms.Theorems.power_set
+import SetTheory.FirstAxioms.Theorems.power_inter_equiv

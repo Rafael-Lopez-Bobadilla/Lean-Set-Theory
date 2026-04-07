@@ -13,3 +13,5 @@ axiom subset_axiom (A : Set) (P : Set → Prop) :
 axiom pairing_axiom (A B: Set) : ∃Pair: Set, ∀x: Set, x∈Pair ↔ x=A ∨ x=B
 
 axiom union_axiom (F: Set) : ∃Union: Set, ∀x: Set, x∈Union ↔ ∃A: Set, A∈F ∧ x∈A
+
+axiom power_set_axiom (F: Set) : ∃Power: Set, ∀x: Set, x∈Power ↔ x⊆F
