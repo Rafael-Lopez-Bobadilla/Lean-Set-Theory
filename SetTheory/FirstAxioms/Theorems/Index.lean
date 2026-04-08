@@ -8,3 +8,7 @@ import SetTheory.FirstAxioms.Theorems.arbitrary_intersection
 import SetTheory.FirstAxioms.Theorems.arbitrary_union
 import SetTheory.FirstAxioms.Theorems.power_set
 import SetTheory.FirstAxioms.Theorems.power_inter_equiv
+import SetTheory.FirstAxioms.Theorems.exercises
+import SetTheory.FirstAxioms.Theorems.arb_op_subset
+import SetTheory.FirstAxioms.Theorems.inter_diff_equiv
+import SetTheory.FirstAxioms.Theorems.union_of_two
