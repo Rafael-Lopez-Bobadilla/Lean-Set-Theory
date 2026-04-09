@@ -12,3 +12,4 @@ import SetTheory.FirstAxioms.Theorems.exercises
 import SetTheory.FirstAxioms.Theorems.arb_op_subset
 import SetTheory.FirstAxioms.Theorems.inter_diff_equiv
 import SetTheory.FirstAxioms.Theorems.union_of_two
+import SetTheory.FirstAxioms.Theorems.pair_set_operation
