@@ -3,7 +3,7 @@ import SetTheory.FirstAxioms.Theorems.intersection
 import SetTheory.FirstAxioms.Theorems.difference
 
 theorem inter_diff_equiv (A B C: Set) : A ∩ (B \ C) = (A ∩ B) \ C := by
-  apply extensionality
+  apply (extensionality (A ∩ (B \ C)) ((A ∩ B) \ C)).mpr
   intro x
   constructor
   intro h1
@@ -21,7 +21,7 @@ theorem inter_diff_equiv (A B C: Set) : A ∩ (B \ C) = (A ∩ B) \ C := by
   exact h5
 
 theorem inter_diff_equiv_2 (A B C : Set) : A ∩ (B \ C) = (A ∩ B) \ C := by
-  apply extensionality
+  apply (extensionality (A ∩ (B \ C)) ((A ∩ B) \ C)).mpr
   intro x
   rw [intersection] -- Goal: x ∈ A ∧ x ∈ B \ C ↔ ...
   rw [difference]       -- Goal: x ∈ A ∧ (x ∈ B ∧ x ∉ C) ↔ ...

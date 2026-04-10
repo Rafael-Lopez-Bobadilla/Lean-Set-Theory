@@ -1,7 +1,7 @@
 import SetTheory.FirstAxioms.Axioms.Definitions
 
 axiom extensionality (A B : Set) :
-  (∀ x : Set, x ∈ A ↔ x ∈ B) → A = B
+  A=B ↔ (∀ x : Set, x ∈ A ↔ x ∈ B)
 
 axiom empty : Set
 notation "∅" => empty

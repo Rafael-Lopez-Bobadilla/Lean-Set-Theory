@@ -3,7 +3,7 @@ import SetTheory.FirstAxioms.Theorems.power_set
 import SetTheory.FirstAxioms.Theorems.intersection
 
 theorem power_inter_equiv (A B: Set) : P(A∩B) = P(A)∩P(B) := by
-  apply extensionality
+  apply (extensionality (P(A∩B)) (P(A)∩P(B))).mpr
   intro x
   constructor
   intro h1
