@@ -35,3 +35,11 @@ theorem cartesian_product_exists (A B: Set) :
         exact h15 ▸ h10
     exact h4 ▸ (power_set P(A∪B) (x,y)).mpr h11
   exact subset_construction P P(P(A∪B)) h1
+
+noncomputable def cartesian_product_op (A B: Set): Set :=
+  Classical.choose (cartesian_product_exists A B)
+infix:70 "×" => cartesian_product_op
+
+theorem cartesian_product (A B: Set):
+  ∀d: Set, d∈A×B ↔ (∃x y: Set, x∈A ∧ y∈B ∧ d=(x,y)) :=
+  Classical.choose_spec (cartesian_product_exists A B)
