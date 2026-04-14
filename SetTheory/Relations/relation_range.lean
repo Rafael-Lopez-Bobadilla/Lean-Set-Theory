@@ -4,7 +4,7 @@ import SetTheory.Relations.ordered_pair_equiv
 import SetTheory.Relations.cartesian_product
 import SetTheory.Relations.relations
 
-theorem relation_range_exists (R: Set) :
+theorem range_exists (R: Set) :
   (R is a relation) → ∃ran: Set, ∀y: Set, y∈ran ↔ ∃x: Set, (x,y)∈R := by
   intro h1
   let P: Set → Prop :=  (fun y => ∃x: Set, (x,y)∈R)
@@ -17,11 +17,11 @@ theorem relation_range_exists (R: Set) :
     exact h6 ▸ h5.right.left
   exact subset_construction P ⋃⋃R h2
 
-noncomputable def relation_range_op
+noncomputable def range_op
   (R: Set) (h0: R is a relation) : Set :=
-  Classical.choose (relation_range_exists R h0)
-notation:max "ran("R")["h0"]" => relation_range_op R h0
+  Classical.choose (range_exists R h0)
+notation:max "ran("R")["h0"]" => range_op R h0
 
-theorem relation_range (R: Set) (h0: R is a relation) :
+theorem range (R: Set) (h0: R is a relation) :
   ∀y: Set, y∈ran(R)[h0] ↔ ∃x: Set, (x,y)∈R :=
-  Classical.choose_spec (relation_range_exists R h0)
+  Classical.choose_spec (range_exists R h0)

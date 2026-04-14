@@ -4,7 +4,7 @@ import SetTheory.Relations.ordered_pair_equiv
 import SetTheory.Relations.cartesian_product
 import SetTheory.Relations.relations
 
-theorem relation_domain_exists (R: Set) :
+theorem domain_exists (R: Set) :
   (R is a relation) → ∃dom: Set, ∀x: Set, x∈dom ↔ ∃y: Set, (x,y)∈R := by
   intro h1
   let P: Set → Prop :=  (fun x => ∃y: Set, (x,y)∈R)
@@ -17,11 +17,11 @@ theorem relation_domain_exists (R: Set) :
     exact h6 ▸ h5.left
   exact subset_construction P ⋃⋃R h2
 
-noncomputable def relation_domain_op
+noncomputable def domain_op
   (R: Set) (h0: R is a relation) : Set :=
-  Classical.choose (relation_domain_exists R h0)
-notation:max "dom("R")["h0"]" => relation_domain_op R h0
+  Classical.choose (domain_exists R h0)
+notation:max "dom("R")["h0"]" => domain_op R h0
 
-theorem relation_domain (R: Set) (h0: R is a relation) :
+theorem domain (R: Set) (h0: R is a relation) :
   ∀x: Set, x∈dom(R)[h0] ↔ ∃y: Set, (x,y)∈R :=
-  Classical.choose_spec (relation_domain_exists R h0)
+  Classical.choose_spec (domain_exists R h0)
