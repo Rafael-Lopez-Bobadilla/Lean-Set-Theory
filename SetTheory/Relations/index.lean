@@ -2,6 +2,7 @@ import SetTheory.Relations.ordered_pair
 import SetTheory.Relations.ordered_pair_equiv
 import SetTheory.Relations.cartesian_product
 import SetTheory.Relations.relations
+import SetTheory.Relations.relation_on_union
 import SetTheory.Relations.relation_domain
 import SetTheory.Relations.relation_range
 import SetTheory.Relations.relation_inverse
@@ -9,3 +10,4 @@ import SetTheory.Relations.restriction
 import SetTheory.Relations.image
 import SetTheory.Relations.inverse_image
 import SetTheory.Relations.composition
+import SetTheory.Relations.partition

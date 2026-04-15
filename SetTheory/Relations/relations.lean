@@ -12,14 +12,23 @@ notation:max R "is ""a ""relation ""on "A => relation_A R A
 def relation_AB (R A B: Set) : Prop := R⊆A×B
 notation:max R "is ""a ""relation ""from "A "to "B => relation_A R A B
 
-theorem relation_on_UUR (R: Set) :
-  (R is a relation) → R ⊆ ⋃⋃R × ⋃⋃R := by
-  intro h1 d h2
-  have ⟨x, y, h3⟩ := (h1 d).mp h2
-  have h4: {x,y}∈(x,y) := (ordered_pair x y {x,y}).mpr (Or.inr rfl)
-  have h5: {x,y}∈⋃R := (arbitrary_union R {x,y}).mpr ⟨d, h2, h3▸h4⟩
-  have h6: x∈{x,y} := (pair_set x y x).mpr (Or.inl rfl)
-  have h7: y∈{x,y} := (pair_set x y y).mpr (Or.inr rfl)
-  have h8: x∈⋃⋃R := (arbitrary_union ⋃R x).mpr ⟨{x,y}, h5, h6⟩
-  have h9: y∈⋃⋃R := (arbitrary_union ⋃R y).mpr ⟨{x,y}, h5, h7⟩
-  exact (cartesian_product ⋃⋃R ⋃⋃R d).mpr ⟨x, y, h8, h9, h3▸h3⟩
+def single_rooted (R: Set) : Prop :=
+  R is a relation ∧  ∀x y z: Set, (x,y)∈R ∧ (z,y)∈R → z=x
+notation:max R "is ""single ""rooted" => single_rooted R
+
+def reflexive (R A: Set) : Prop := (R is a relation on A) ∧ ∀x: Set, x∈A → (x,x)∈R
+notation:max R "is ""reflexive ""on "A => reflexive R A
+
+def symmetric (R: Set) : Prop := R is a relation ∧ ∀x y: Set, (x,y)∈R → (y,x)∈R
+notation:max R "is ""symmetric" => symmetric R
+
+def transitive_relation (R: Set) : Prop :=
+  R is a relation ∧ ∀x y z: Set, (x,y)∈R ∧ (y,z)∈R → (x,z)∈R
+notation:max R "is ""a ""transitive " "relation" => transitive_relation R
+
+def equivalence_relation (R A: Set) : Prop :=
+  (R is a relation on A) ∧
+  (R is reflexive on A) ∧
+  (R is symmetric) ∧
+  (R is a transitive relation)
+notation:max R "is ""an ""equivalence ""relation ""on "A => equivalence_relation R A

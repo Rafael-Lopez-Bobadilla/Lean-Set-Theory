@@ -3,6 +3,7 @@ import SetTheory.Relations.ordered_pair
 import SetTheory.Relations.ordered_pair_equiv
 import SetTheory.Relations.cartesian_product
 import SetTheory.Relations.relations
+import SetTheory.Relations.relation_on_union
 
 theorem range_exists (R: Set) :
   (R is a relation) → ∃ran: Set, ∀y: Set, y∈ran ↔ ∃x: Set, (x,y)∈R := by
