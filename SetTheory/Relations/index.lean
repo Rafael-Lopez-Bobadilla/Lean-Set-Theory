@@ -5,3 +5,4 @@ import SetTheory.Relations.relations
 import SetTheory.Relations.relation_domain
 import SetTheory.Relations.relation_range
 import SetTheory.Relations.relation_inverse
+import SetTheory.Relations.restriction
