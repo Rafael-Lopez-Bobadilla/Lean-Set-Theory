@@ -6,3 +6,5 @@ import SetTheory.Relations.relation_domain
 import SetTheory.Relations.relation_range
 import SetTheory.Relations.relation_inverse
 import SetTheory.Relations.restriction
+import SetTheory.Relations.image
+import SetTheory.Relations.inverse_image
