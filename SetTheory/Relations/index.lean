@@ -12,3 +12,4 @@ import SetTheory.Relations.inverse_image
 import SetTheory.Relations.composition
 import SetTheory.Relations.partition
 import SetTheory.Relations.equivalence_class
+import SetTheory.Relations.quotient_set
