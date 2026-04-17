@@ -1,4 +1,0 @@
-import SetTheory.Relations.Theorems.three_two_sixteen
-import SetTheory.Relations.Theorems.ordered_pair_equiv
-import SetTheory.Relations.Theorems.quotient_is_partition
-import SetTheory.Relations.Theorems.relation_on_union

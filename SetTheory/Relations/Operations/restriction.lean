@@ -1,9 +1,8 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.SetDefinitions.ordered_pair
-import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.SetDefinitions.domain
-import SetTheory.Relations.SetDefinitions.range
-import SetTheory.Relations.PropDefinitions.Index
+import SetTheory.Relations.CartesianProduct.Index
+import SetTheory.Relations.Operations.domain
+import SetTheory.Relations.Operations.range
+import SetTheory.Relations.Operations.relations
 
 theorem restriction_exists (R A: Set) (h0: R is a relation) :
   ∃restriction: Set, ∀d: Set,

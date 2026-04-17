@@ -1,0 +1,6 @@
+import SetTheory.Relations.Equivalence.definition
+import SetTheory.Relations.Equivalence.equivalence_class
+import SetTheory.Relations.Equivalence.quotient_set
+import SetTheory.Relations.Equivalence.quotient_is_partition
+import SetTheory.Relations.Equivalence.partition
+import SetTheory.Relations.Equivalence.three_two_sixteen

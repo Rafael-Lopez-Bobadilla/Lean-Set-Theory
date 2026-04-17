@@ -1,0 +1,9 @@
+import SetTheory.Relations.Operations.composition
+import SetTheory.Relations.Operations.domain
+import SetTheory.Relations.Operations.range
+import SetTheory.Relations.Operations.inverse
+import SetTheory.Relations.Operations.image
+import SetTheory.Relations.Operations.inverse_image
+import SetTheory.Relations.Operations.restriction
+import SetTheory.Relations.Operations.relations
+import SetTheory.Relations.Operations.relation_on_union

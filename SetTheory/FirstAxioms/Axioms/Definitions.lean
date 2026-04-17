@@ -1,5 +1,4 @@
 axiom Set : Type
--- Fundamental relation declared as a type function
 axiom member : Set → Set → Prop
 infix:50 " ∈ " => member
 

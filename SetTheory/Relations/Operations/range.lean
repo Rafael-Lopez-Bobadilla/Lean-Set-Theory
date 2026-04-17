@@ -1,9 +1,7 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.SetDefinitions.ordered_pair
-import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.Theorems.relation_on_union
-import SetTheory.Relations.Theorems.ordered_pair_equiv
-import SetTheory.Relations.PropDefinitions.Index
+import SetTheory.Relations.CartesianProduct.Index
+import SetTheory.Relations.Operations.relation_on_union
+import SetTheory.Relations.Operations.relations
 
 theorem range_exists (R: Set) :
   (R is a relation) → ∃ran: Set, ∀y: Set, y∈ran ↔ ∃x: Set, (x,y)∈R := by

@@ -1,8 +1,9 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.SetDefinitions.quotient_set
-import SetTheory.Relations.SetDefinitions.equivalence_class
-import SetTheory.Relations.Theorems.three_two_sixteen
-import SetTheory.Relations.PropDefinitions.Index
+import SetTheory.Relations.Equivalence.quotient_set
+import SetTheory.Relations.Equivalence.equivalence_class
+import SetTheory.Relations.Equivalence.three_two_sixteen
+import SetTheory.Relations.Equivalence.partition
+import SetTheory.Relations.Equivalence.definition
 
 theorem quotient_is_partition
   (R A: Set) (h0: R is an equivalence relation on A) :
@@ -11,7 +12,7 @@ theorem quotient_is_partition
     intro d h2
     have h3: (d,d)∈R := (h0.right.left.right) d h2
     have h4 := (equivalence_class R A d ⟨h0, h2⟩ d).mpr h3
-    have h5 := (quotient_set R A h0 [R,A,⟨h0,h2⟩]class(d)).mpr
+    have h5 := (quotient_set R A h0 ([R,A,⟨h0,h2⟩]class(d))).mpr
       ⟨d, h2, rfl⟩
     exact ⟨[R,A,⟨h0,h2⟩]class(d), h5, h4⟩
   have h2: ∀S T: Set, S∈([h0]A/R) ∧ T∈([h0]A/R) ∧ S≠T → S∩T=∅ := by

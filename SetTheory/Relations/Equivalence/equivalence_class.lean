@@ -1,8 +1,6 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.SetDefinitions.ordered_pair
-import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.Theorems.ordered_pair_equiv
-import SetTheory.Relations.PropDefinitions.Index
+import SetTheory.Relations.CartesianProduct.Index
+import SetTheory.Relations.Equivalence.definition
 
 theorem equivalence_class_exists
   (R A y: Set) (h0: R is an equivalence relation on A) :

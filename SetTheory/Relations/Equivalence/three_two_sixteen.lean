@@ -1,9 +1,7 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.Theorems.ordered_pair_equiv
-import SetTheory.Relations.SetDefinitions.ordered_pair
-import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.SetDefinitions.equivalence_class
-import SetTheory.Relations.PropDefinitions.Index
+import SetTheory.Relations.Operations.Index
+import SetTheory.Relations.CartesianProduct.Index
+import SetTheory.Relations.Equivalence.equivalence_class
 
 theorem three_two_sixteen
   (R A r s: Set)
@@ -15,12 +13,12 @@ theorem three_two_sixteen
   intro h1
   have h2: (r,r)∈R := (h0.right.left).right r h01.left
   have h3 := (equivalence_class R A r ⟨h0, h01.left⟩ r).mpr h2
-  have h4 := ((extensionality [R,A,⟨h0,h01.left⟩]class(r)
-    [R,A,⟨h0,h01.right⟩]class(s)).mp h1 r).mp h3
+  have h4 := ((extensionality ([R,A,⟨h0,h01.left⟩]class(r))
+  ([R,A,⟨h0,h01.right⟩]class(s))).mp h1 r).mp h3
   exact (equivalence_class R A s ⟨h0, h01.right⟩ r).mp h4
   intro h2
   apply (extensionality
-    [R,A,⟨h0,h01.left⟩]class(r) [R,A,⟨h0,h01.right⟩]class(s)).mpr
+    ([R,A,⟨h0,h01.left⟩]class(r)) ([R,A,⟨h0,h01.right⟩]class(s))).mpr
   intro x
   constructor
   intro h3

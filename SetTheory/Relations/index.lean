@@ -1,3 +1,3 @@
-import SetTheory.Relations.PropDefinitions.Index
-import SetTheory.Relations.Theorems.Index
-import SetTheory.Relations.SetDefinitions.Index
+import SetTheory.Relations.CartesianProduct.Index
+import SetTheory.Relations.Operations.Index
+import SetTheory.Relations.Equivalence.Index

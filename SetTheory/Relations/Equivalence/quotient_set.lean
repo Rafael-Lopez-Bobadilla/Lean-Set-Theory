@@ -1,9 +1,7 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.SetDefinitions.ordered_pair
-import SetTheory.Relations.SetDefinitions.equivalence_class
-import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.Theorems.ordered_pair_equiv
-import SetTheory.Relations.PropDefinitions.Index
+import SetTheory.Relations.Equivalence.equivalence_class
+import SetTheory.Relations.CartesianProduct.Index
+import SetTheory.Relations.Equivalence.definition
 
 theorem quotient_set_exists
   (R A: Set) (h0: R is an equivalence relation on A) :
@@ -33,5 +31,5 @@ notation:max "["h0"]"A:max"/"R:max => quotient_set_op R A h0
 
 theorem quotient_set
   (R A: Set) (h0: R is an equivalence relation on A) :
-  ∀d: Set, d∈[h0]A/R ↔ ∃(x: Set)(h1: x∈A), d=[R,A,⟨h0,h1⟩]class(x) :=
+  ∀d: Set, d∈([h0]A/R) ↔ ∃(x: Set)(h1: x∈A), d=[R,A,⟨h0,h1⟩]class(x) :=
   Classical.choose_spec (quotient_set_exists R A h0)

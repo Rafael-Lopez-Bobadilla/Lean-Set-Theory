@@ -1,8 +1,7 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.SetDefinitions.ordered_pair
-import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.SetDefinitions.range
-import SetTheory.Relations.PropDefinitions.Index
+import SetTheory.Relations.CartesianProduct.Index
+import SetTheory.Relations.Operations.range
+import SetTheory.Relations.Operations.relations
 
 theorem image_exists (R A: Set) (h0: R is a relation) :
   ∃image: Set, ∀y: Set, y∈image ↔ ∃x: Set, x∈A ∧ (x,y)∈R := by
