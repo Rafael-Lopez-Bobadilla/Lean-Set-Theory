@@ -1,8 +1,6 @@
 import SetTheory.FirstAxioms.Index
 import SetTheory.Relations.SetDefinitions.ordered_pair
-import SetTheory.Relations.SetDefinitions.relation_domain
-import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.Theorems.ordered_pair_equiv
+import SetTheory.Relations.SetDefinitions.domain
 import SetTheory.Relations.PropDefinitions.Index
 
 theorem inverse_image_exists (R A: Set) (h0: R is a relation) :

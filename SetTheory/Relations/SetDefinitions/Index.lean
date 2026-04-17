@@ -1,8 +1,8 @@
 import SetTheory.Relations.SetDefinitions.ordered_pair
 import SetTheory.Relations.SetDefinitions.cartesian_product
-import SetTheory.Relations.SetDefinitions.relation_domain
-import SetTheory.Relations.SetDefinitions.relation_range
-import SetTheory.Relations.SetDefinitions.relation_inverse
+import SetTheory.Relations.SetDefinitions.domain
+import SetTheory.Relations.SetDefinitions.range
+import SetTheory.Relations.SetDefinitions.inverse
 import SetTheory.Relations.SetDefinitions.restriction
 import SetTheory.Relations.SetDefinitions.image
 import SetTheory.Relations.SetDefinitions.inverse_image
