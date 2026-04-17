@@ -13,8 +13,6 @@ private theorem pair_subset_union (x y A B: Set) :
 
 theorem cartesian_product_exists (A B: Set) :
   ∃D: Set, ∀d: Set, d∈D ↔ (∃x y: Set, x∈A ∧ y∈B ∧ d=(x,y)) := by
-  --have ⟨D, D_mem⟩ :=
-    --subset_axiom P(P(A∪B)) (fun d => (∃x y: Set, x∈A ∧ y∈B ∧ d=(x,y)))
   let P: Set → Prop := (fun d => (∃x y: Set, x∈A ∧ y∈B ∧ d=(x,y)))
   have h1: ∀d: Set, P d → d∈P(P(A∪B)) := by
     intro d P_d
