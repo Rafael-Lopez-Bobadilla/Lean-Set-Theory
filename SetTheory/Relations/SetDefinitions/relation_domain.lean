@@ -1,9 +1,9 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.ordered_pair
-import SetTheory.Relations.ordered_pair_equiv
-import SetTheory.Relations.cartesian_product
-import SetTheory.Relations.relations
-import SetTheory.Relations.relation_on_union
+import SetTheory.Relations.SetDefinitions.ordered_pair
+import SetTheory.Relations.SetDefinitions.cartesian_product
+import SetTheory.Relations.Theorems.relation_on_union
+import SetTheory.Relations.Theorems.ordered_pair_equiv
+import SetTheory.Relations.PropDefinitions.Index
 
 theorem domain_exists (R: Set) :
   (R is a relation) → ∃dom: Set, ∀x: Set, x∈dom ↔ ∃y: Set, (x,y)∈R := by

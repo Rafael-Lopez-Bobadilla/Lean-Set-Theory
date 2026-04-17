@@ -1,11 +1,8 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.quotient_set
-import SetTheory.Relations.equivalence_class
-
-def partition (A P: Set) : Prop :=
-  (∀d: Set, d∈A → ∃S: Set, S∈P ∧ d∈S) ∧
-  ∀S T: Set, S∈P ∧ T∈P ∧ S≠T → S∩T=∅
-notation:max P "is ""a ""partition ""of "A => partition A P
+import SetTheory.Relations.SetDefinitions.quotient_set
+import SetTheory.Relations.SetDefinitions.equivalence_class
+import SetTheory.Relations.Theorems.three_two_sixteen
+import SetTheory.Relations.PropDefinitions.Index
 
 theorem quotient_is_partition
   (R A: Set) (h0: R is an equivalence relation on A) :

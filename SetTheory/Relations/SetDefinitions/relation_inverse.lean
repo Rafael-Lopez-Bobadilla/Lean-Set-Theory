@@ -1,10 +1,10 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.ordered_pair
-import SetTheory.Relations.ordered_pair_equiv
-import SetTheory.Relations.cartesian_product
-import SetTheory.Relations.relations
-import SetTheory.Relations.relation_domain
-import SetTheory.Relations.relation_range
+import SetTheory.Relations.SetDefinitions.ordered_pair
+import SetTheory.Relations.SetDefinitions.relation_domain
+import SetTheory.Relations.SetDefinitions.relation_range
+import SetTheory.Relations.SetDefinitions.cartesian_product
+import SetTheory.Relations.Theorems.ordered_pair_equiv
+import SetTheory.Relations.PropDefinitions.Index
 
 theorem inverse_exists (R: Set) (h0: R is a relation) :
   ∃inverse: Set, ∀d: Set, d∈inverse ↔ ∃x y: Set, (x,y)∈R ∧ d=(y,x) := by

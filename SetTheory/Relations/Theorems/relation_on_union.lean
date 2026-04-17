@@ -1,7 +1,7 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.ordered_pair
-import SetTheory.Relations.cartesian_product
-import SetTheory.Relations.relations
+import SetTheory.Relations.SetDefinitions.ordered_pair
+import SetTheory.Relations.SetDefinitions.cartesian_product
+import SetTheory.Relations.PropDefinitions.Index
 
 theorem relation_on_UUR (R: Set) :
   (R is a relation) → R ⊆ ⋃⋃R × ⋃⋃R := by

@@ -1,6 +1,6 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.ordered_pair
-import SetTheory.Relations.cartesian_product
+import SetTheory.Relations.SetDefinitions.ordered_pair
+import SetTheory.Relations.SetDefinitions.cartesian_product
 
 def relation (R: Set) : Prop :=
   ∀d: Set, d∈R ↔ ∃x y: Set, (x,y)=d

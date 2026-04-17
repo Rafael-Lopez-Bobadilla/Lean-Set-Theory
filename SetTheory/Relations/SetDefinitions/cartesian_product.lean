@@ -1,5 +1,5 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.ordered_pair
+import SetTheory.Relations.SetDefinitions.ordered_pair
 
 private theorem pair_subset_union (x y A B: Set) :
   (x∈A∪B ∧ y∈A∪B) → {x,y}⊆A∪B := by

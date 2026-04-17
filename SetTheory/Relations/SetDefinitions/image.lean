@@ -1,9 +1,9 @@
 import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.ordered_pair
-import SetTheory.Relations.ordered_pair_equiv
-import SetTheory.Relations.cartesian_product
-import SetTheory.Relations.relations
-import SetTheory.Relations.relation_range
+import SetTheory.Relations.SetDefinitions.ordered_pair
+import SetTheory.Relations.SetDefinitions.cartesian_product
+import SetTheory.Relations.SetDefinitions.relation_range
+import SetTheory.Relations.Theorems.ordered_pair_equiv
+import SetTheory.Relations.PropDefinitions.Index
 
 theorem image_exists (R A: Set) (h0: R is a relation) :
   ∃image: Set, ∀y: Set, y∈image ↔ ∃x: Set, x∈A ∧ (x,y)∈R := by

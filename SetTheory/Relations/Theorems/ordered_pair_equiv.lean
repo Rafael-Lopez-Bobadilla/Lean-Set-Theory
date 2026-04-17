@@ -1,5 +1,5 @@
 import SetTheory.FirstAxioms.Axioms.Index
-import SetTheory.Relations.ordered_pair
+import SetTheory.Relations.SetDefinitions.ordered_pair
 
 theorem ordered_pair_equiv (a b x y: Set) :
   (a,b)=(x,y) ↔ a=x ∧ b=y := by

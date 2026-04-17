@@ -1,0 +1,2 @@
+import SetTheory.Relations.PropDefinitions.partition
+import SetTheory.Relations.PropDefinitions.relations
