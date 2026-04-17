@@ -16,6 +16,10 @@ def single_rooted (R: Set) : Prop :=
   R is a relation ∧  ∀x y z: Set, (x,y)∈R ∧ (z,y)∈R → z=x
 notation:max R "is ""single ""rooted" => single_rooted R
 
+def single_valued (R: Set) : Prop :=
+  R is a relation ∧  ∀x y z: Set, (x,y)∈R ∧ (x,z)∈R → y=z
+notation:max R "is ""single ""valued" => single_valued R
+
 def reflexive (R A: Set) : Prop := (R is a relation on A) ∧ ∀x: Set, x∈A → (x,x)∈R
 notation:max R "is ""reflexive ""on "A => reflexive R A
 
