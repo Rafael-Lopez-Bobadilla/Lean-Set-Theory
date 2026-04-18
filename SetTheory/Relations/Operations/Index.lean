@@ -7,4 +7,3 @@ import SetTheory.Relations.Operations.inverse_image
 import SetTheory.Relations.Operations.restriction
 import SetTheory.Relations.Operations.relations
 import SetTheory.Relations.Operations.relation_on_union
-import SetTheory.Relations.Operations.double_inverse

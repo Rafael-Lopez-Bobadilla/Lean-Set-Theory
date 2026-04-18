@@ -11,9 +11,8 @@ theorem domain_exists (R: Set) :
     intro x P_x
     have ⟨y, h3⟩ := P_x
     have h4 := relation_on_UUR R h1 (x,y) h3
-    have ⟨x2,y2,h5⟩ := (cartesian_product ⋃⋃R ⋃⋃R (x,y)).mp h4
-    have h6: x=x2 := ((ordered_pair_equiv x y x2 y2).mp h5.right.right).left
-    exact h6 ▸ h5.left
+    have h5 := (cartesian_product_xy ⋃⋃R ⋃⋃R x y).mp h4
+    exact h5.left
   exact subset_construction P ⋃⋃R h2
 
 noncomputable def domain_op

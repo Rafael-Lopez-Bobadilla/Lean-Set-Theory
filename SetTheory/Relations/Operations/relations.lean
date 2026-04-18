@@ -2,7 +2,7 @@ import SetTheory.FirstAxioms.Index
 import SetTheory.Relations.CartesianProduct.Index
 
 def relation (R: Set) : Prop :=
-  ∀d: Set, d∈R → ∃x y: Set, (x,y)=d
+  ∀d: Set, d∈R → ∃x y: Set, d=(x,y)
 notation:max R "is ""a ""relation" => relation R
 
 def relation_A (R A: Set) : Prop := R⊆A×A

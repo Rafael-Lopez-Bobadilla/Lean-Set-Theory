@@ -43,32 +43,13 @@ theorem cartesian_product (A B: Set):
   ∀d: Set, d∈A×B ↔ (∃x y: Set, x∈A ∧ y∈B ∧ d=(x,y)) :=
   Classical.choose_spec (cartesian_product_exists A B)
 
-theorem cartesian_product_exists_two (A B: Set) :
-  ∃D: Set, ∀x y d: Set, d=(x,y) → ((x,y)∈D ↔ x∈A ∧ y∈B) := by
-  let P: Set → Prop := (fun d => (∃x y: Set, x∈A ∧ y∈B ∧ d=(x,y)))
-  have ⟨S, h1⟩ := subset_axiom P(P(A∪B)) P
-  apply Exists.intro S
-  intro x y d h2
+theorem cartesian_product_xy (A B: Set) :
+  ∀x y: Set, (x,y)∈A×B ↔ x∈A ∧ y∈B := by
+  intro x y
   constructor
-  intro h3
-  have ⟨h4,h5⟩ := (h1 (x,y)).mp h3
-  have ⟨x2,y2,h6,h7,h8⟩ := h5
-  have h9 := (ordered_pair_equiv x y x2 y2).mp h8
-  exact ⟨h9.left▸h6, h9.right▸h7⟩
-  intro ⟨h3,h4⟩
-  have h5: x∈A∪B := (union_of_two A B x).mpr (Or.inl h3)
-  have h6: y∈A∪B := (union_of_two A B y).mpr (Or.inr h4)
-  have h7: {x,x}⊆A∪B := (pair_subset_union x x A B) ⟨h5, h5⟩
-  have h8: {x,y}⊆A∪B := (pair_subset_union x y A B) ⟨h5, h6⟩
-  have h9: {x,x}∈P(A∪B) := (power_set (A∪B) {x,x}).mpr h7
-  have h10: {x,y}∈P(A∪B) := (power_set (A∪B) {x,y}).mpr h8
-  have h11: (x,y)⊆P(A∪B) := by
-    intro r h12
-    have h13 := (ordered_pair x y r).mp h12
-    cases h13 with
-    | inl h14 =>
-      exact h14 ▸ h9
-    | inr h15 =>
-      exact h15 ▸ h10
-  have h12: (x,y) ∈ P(P(A∪B)) := (power_set P(A∪B) (x,y)).mpr h11
-  exact (h1 (x,y)).mpr ⟨h12, ⟨x,y,h3,h4,rfl⟩⟩
+  intro h1
+  have ⟨x2,y2,h2,h3,h4⟩ := (cartesian_product A B (x,y)).mp h1
+  have ⟨h5,h6⟩ := (ordered_pair_equiv x y x2 y2).mp h4
+  exact ⟨h5▸h2,h6▸h3⟩
+  intro ⟨h2,h3⟩
+  exact (cartesian_product A B (x,y)).mpr ⟨x,y,h2,h3,rfl⟩

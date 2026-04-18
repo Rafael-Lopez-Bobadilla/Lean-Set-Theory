@@ -11,9 +11,8 @@ theorem range_exists (R: Set) :
     intro y P_y
     have ⟨x, h3⟩ := P_y
     have h4 := relation_on_UUR R h1 (x,y) h3
-    have ⟨x2,y2,h5⟩ := (cartesian_product ⋃⋃R ⋃⋃R (x,y)).mp h4
-    have h6: y=y2 := ((ordered_pair_equiv x y x2 y2).mp h5.right.right).right
-    exact h6 ▸ h5.right.left
+    have h5 := (cartesian_product_xy ⋃⋃R ⋃⋃R x y).mp h4
+    exact h5.right
   exact subset_construction P ⋃⋃R h2
 
 noncomputable def range_op

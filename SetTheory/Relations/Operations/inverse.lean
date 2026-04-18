@@ -23,3 +23,19 @@ notation:max R"["h0"]⁻¹" => inverse_op R h0
 theorem inverse (R: Set) (h0: R is a relation) :
   ∀d: Set, d∈R[h0]⁻¹ ↔ ∃x y: Set, (x,y)∈R ∧ d=(y,x) :=
   Classical.choose_spec (inverse_exists R h0)
+
+theorem inverse_xy (R x y: Set) (h0: R is a relation):
+  (x,y)∈R[h0]⁻¹ ↔ (y,x)∈R := by
+  constructor
+  intro h1
+  have ⟨x2,y2,h2,h3⟩ := (inverse R h0 (x,y)).mp h1
+  have ⟨h4,h5⟩ := (ordered_pair_equiv x y y2 x2).mp h3
+  exact h4 ▸ h5 ▸ h2
+  intro h2
+  exact (inverse R h0 (x,y)).mpr ⟨y,x,h2,rfl⟩
+
+theorem inverse_is_relation (R: Set)(h0: R is a relation) :
+  R[h0]⁻¹ is a relation := by
+  intro d h1
+  have ⟨x,y,h2,h3⟩ := (inverse R h0 d).mp h1
+  exact ⟨y,x,h3⟩

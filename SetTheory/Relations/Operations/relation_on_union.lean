@@ -12,4 +12,4 @@ theorem relation_on_UUR (R: Set) :
   have h7: y∈{x,y} := (pair_set x y y).mpr (Or.inr rfl)
   have h8: x∈⋃⋃R := (arbitrary_union ⋃R x).mpr ⟨{x,y}, h5, h6⟩
   have h9: y∈⋃⋃R := (arbitrary_union ⋃R y).mpr ⟨{x,y}, h5, h7⟩
-  exact (cartesian_product ⋃⋃R ⋃⋃R d).mpr ⟨x, y, h8, h9, h3▸h3⟩
+  exact h3 ▸ (cartesian_product_xy ⋃⋃R ⋃⋃R x y).mpr ⟨h8, h9⟩

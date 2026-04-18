@@ -24,3 +24,15 @@ notation:max "["h0"]"R"↾"A:max => restriction_op R A h0
 theorem restriction (R A: Set) (h0: R is a relation) :
   ∀d: Set, d∈[h0]R↾A ↔ ∃x y: Set, (x,y)∈R ∧ x∈A ∧ d=(x,y) :=
   Classical.choose_spec (restriction_exists R A h0)
+
+theorem restriction_xy (R A: Set)(h0: R is a relation) :
+  ∀x y: Set, (x,y)∈[h0]R↾A ↔ (x,y)∈R ∧ x∈A := by
+  intro x y
+  constructor
+  intro h1
+  have ⟨x2,y2,h2,h3,h4⟩ := (restriction R A h0 (x,y)).mp h1
+  have ⟨h5,h6⟩ := (ordered_pair_equiv x y x2 y2).mp h4
+  have h7 := h5 ▸ h6 ▸ h2
+  exact ⟨h7, h5 ▸ h3⟩
+  intro ⟨h2,h3⟩
+  exact (restriction R A h0 (x,y)).mpr ⟨x,y,h2,h3,rfl⟩
