@@ -9,7 +9,7 @@ theorem equivalence_class_exists
   let P: Set → Prop :=  (fun x => (x,y)∈R)
   have h2: ∀x: Set, P x → x∈A := by
     intro x P_x
-    have h3: (x,y)∈A×A := h0.left (x,y) P_x
+    have h3: (x,y)∈A×A := h0.left.right (x,y) P_x
     have h4 := (cartesian_product_xy A A x y).mp h3
     exact h4.left
   exact subset_construction P A h2

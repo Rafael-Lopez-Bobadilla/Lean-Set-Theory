@@ -6,7 +6,7 @@ notation:max F "is ""a ""function" => function F
 def function_AB (F A B: Set) :=
   (F is a function) ∧
   (∀x: Set, x∈A → ∃y: Set, (x,y)∈F) ∧
-  F⊆A×B
+  (F is a relation from A to B)
 notation:max F "is ""a ""function ""from "A "to "B =>
   function_AB F A B
 
@@ -16,7 +16,7 @@ notation:max F "is ""one ""to ""one" => one_to_one F
 
 def surjection (F A B: Set) : Prop :=
   (F is a function from A to B) ∧
-  ∀y: Set, y∈B → ∃x: Set, (x,y)∈B
+  ∀y: Set, y∈B → ∃x: Set, (x,y)∈F
 notation:max F "maps "A "onto "B => surjection F A B
 
 def bijection (F A B: Set) : Prop :=

@@ -5,11 +5,15 @@ def relation (R: Set) : Prop :=
   ∀d: Set, d∈R → ∃x y: Set, d=(x,y)
 notation:max R "is ""a ""relation" => relation R
 
-def relation_A (R A: Set) : Prop := R⊆A×A
+def relation_A (R A: Set) : Prop :=
+  R is a relation ∧
+  R⊆A×A
 notation:max R "is ""a ""relation ""on "A => relation_A R A
 
-def relation_AB (R A B: Set) : Prop := R⊆A×B
-notation:max R "is ""a ""relation ""from "A "to "B => relation_A R A B
+def relation_AB (R A B: Set) : Prop :=
+  R is a relation ∧
+  R⊆A×B
+notation:max R "is ""a ""relation ""from "A "to "B => relation_AB R A B
 
 def single_rooted (R: Set) : Prop :=
   R is a relation ∧  ∀x y z: Set, (x,y)∈R ∧ (z,y)∈R → z=x

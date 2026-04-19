@@ -39,3 +39,14 @@ theorem inverse_is_relation (R: Set)(h0: R is a relation) :
   intro d h1
   have ⟨x,y,h2,h3⟩ := (inverse R h0 d).mp h1
   exact ⟨y,x,h3⟩
+
+theorem inverse_AB (R A B: Set)(h0: R is a relation from A to B) :
+  R[h0.left]⁻¹ is a relation from B to A := by
+  have h1: R[h0.left]⁻¹⊆B×A := by
+    intro d h2
+    have ⟨x,y,h3,h4⟩ := (inverse R h0.left d).mp h2
+    have h5: (x,y)∈A×B := h0.right (x,y) h3
+    have h6 := (cartesian_product_xy A B x y).mp h5
+    have h7 := (cartesian_product_xy B A y x).mpr ⟨h6.right,h6.left⟩
+    exact h4▸h7
+  exact ⟨(inverse_is_relation R h0.left),h1⟩

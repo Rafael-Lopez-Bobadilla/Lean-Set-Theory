@@ -17,7 +17,7 @@ theorem quotient_set_exists
       intro r h6
       have h7 := h4 ▸ h6
       have h8: (r,x)∈R := (equivalence_class R A x h0 h3 r).mp h7
-      have h9: (r,x)∈A×A := (h0.left (r,x) h8)
+      have h9: (r,x)∈A×A := (h0.left.right (r,x) h8)
       have h10 := ((cartesian_product_xy A A r x).mp h9)
       exact h10.left
     exact (power_set A d).mpr h5
