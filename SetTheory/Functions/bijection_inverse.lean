@@ -1,6 +1,5 @@
-import SetTheory.Relations.Index
 import SetTheory.Functions.functions
-import SetTheory.Functions.one_to_one_inverse
+import SetTheory.Functions.one_to_one
 
 theorem bijection_inverse (F A B: Set)
   (h0: F is a bijection from A to B)

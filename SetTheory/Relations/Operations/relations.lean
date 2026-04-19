@@ -22,3 +22,9 @@ notation:max R "is ""single ""rooted" => single_rooted R
 def single_valued (R: Set) : Prop :=
   R is a relation ∧  ∀x y z: Set, (x,y)∈R ∧ (x,z)∈R → y=z
 notation:max R "is ""single ""valued" => single_valued R
+
+theorem xy_in_A_to_B (R A B: Set)(h0: R is a relation from A to B) :
+∀x y: Set, (x,y)∈R → x∈A ∧ y∈B := by
+  intro x y h1
+  have h2 := h0.right (x,y) h1
+  exact (cartesian_product_xy A B x y).mp h2

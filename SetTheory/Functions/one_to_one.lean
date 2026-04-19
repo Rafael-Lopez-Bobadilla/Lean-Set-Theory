@@ -1,4 +1,3 @@
-import SetTheory.Relations.Index
 import SetTheory.Functions.functions
 
 theorem one_to_one_inverse (F: Set) (h0: F is one to one)
@@ -22,3 +21,16 @@ theorem one_to_one_inverse (F: Set) (h0: F is one to one)
       exact h8▸h8
     exact ⟨(inverse_is_relation F h1), h3⟩
   exact ⟨sv,sr⟩
+
+theorem one_to_one_comp (F G A B C: Set)
+  (h0: F is a function from A to B)
+  (h1: F is one to one)
+  (h2: G is a function from B to C)
+  (h3: G is one to one)
+  (h4:= h1.left.left)
+  (h5:= h3.left.left)
+  :
+  (([h4,h5]F∘G) is a function from A to C) ∧
+  (([h4,h5]F∘G) is one to one) := by
+  --have h6 := comp_is_funci
+  sorry
