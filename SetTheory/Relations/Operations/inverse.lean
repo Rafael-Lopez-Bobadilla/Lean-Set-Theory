@@ -1,8 +1,5 @@
-import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.CartesianProduct.Index
 import SetTheory.Relations.Operations.domain
 import SetTheory.Relations.Operations.range
-import SetTheory.Relations.Operations.relations
 
 theorem inverse_exists (R: Set) (h0: R is a relation) :
   ∃inverse: Set, ∀d: Set, d∈inverse ↔ ∃x y: Set, (x,y)∈R ∧ d=(y,x) := by

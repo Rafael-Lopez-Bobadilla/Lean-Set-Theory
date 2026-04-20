@@ -1,4 +1,3 @@
-import SetTheory.FirstAxioms.Index
 import SetTheory.Relations.CartesianProduct.Index
 
 def relation (R: Set) : Prop :=

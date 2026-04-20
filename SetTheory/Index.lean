@@ -1,2 +1,1 @@
-import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.Index
+import SetTheory.Functions.Index

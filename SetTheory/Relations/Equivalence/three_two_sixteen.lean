@@ -1,6 +1,4 @@
-import SetTheory.FirstAxioms.Index
 import SetTheory.Relations.Operations.Index
-import SetTheory.Relations.CartesianProduct.Index
 import SetTheory.Relations.Equivalence.equivalence_class
 
 theorem three_two_sixteen

@@ -1,4 +1,3 @@
-import SetTheory.FirstAxioms.Index
 import SetTheory.Relations.Operations.Index
 
 def reflexive (R A: Set) : Prop := (R is a relation on A) ∧ ∀x: Set, x∈A → (x,x)∈R

@@ -1,7 +1,4 @@
-import SetTheory.FirstAxioms.Index
 import SetTheory.Relations.Equivalence.equivalence_class
-import SetTheory.Relations.CartesianProduct.Index
-import SetTheory.Relations.Equivalence.definition
 
 theorem quotient_set_exists
   (R A: Set) (h0: R is an equivalence relation on A) :

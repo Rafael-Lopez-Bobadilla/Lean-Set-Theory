@@ -1,5 +1,3 @@
-import SetTheory.FirstAxioms.Index
-import SetTheory.Relations.CartesianProduct.Index
 import SetTheory.Relations.Operations.relations
 
 theorem relation_on_UUR (R: Set) :

@@ -1,6 +1,4 @@
-import SetTheory.FirstAxioms.Index
 import SetTheory.Relations.Equivalence.quotient_set
-import SetTheory.Relations.Equivalence.equivalence_class
 import SetTheory.Relations.Equivalence.three_two_sixteen
 import SetTheory.Relations.Equivalence.partition
 import SetTheory.Relations.Equivalence.definition
