@@ -6,7 +6,7 @@ theorem set_of_all_functions_exists (A B: Set) :
   let P: Set → Prop :=  (fun G => G is a function from A to B)
   have h1: ∀G: Set, P G → G∈P(A×B) := by
     intro G P_G
-    exact (power_set (A×B) G).mpr P_G.right.right
+    exact (power_set (A×B) G).mpr P_G.right.right.right
   exact subset_construction P P(A×B) h1
 
 noncomputable def set_of_all_functions_op (A B: Set) : Set :=

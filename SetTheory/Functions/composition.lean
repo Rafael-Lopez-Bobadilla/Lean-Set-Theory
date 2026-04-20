@@ -1,5 +1,5 @@
 import SetTheory.Functions.functions
-import SetTheory.Functions.one_to_one
+import SetTheory.Functions.inverse
 
 theorem comp_is_function (F G: Set)
  (h0: F is a function)
@@ -32,3 +32,50 @@ theorem comp_is_function_AB (F G A B C: Set)
   have h5:= (comp_is_function F G h1.left h0.left)
   have h6 := (composition_ABC G F A B C h0.right.right h1.right.right)
   exact ⟨h5,h4,h6⟩
+
+theorem one_to_one_comp (F G: Set)
+  (h0: F is one to one)
+  (h1: G is one to one)
+  (h2:= h0.left.left)
+  (h3:= h1.left.left)
+  :
+  (([h2,h3]F∘G) is one to one) := by
+  let FG: Set := [h2,h3]F∘G
+  have h6 := comp_is_function F G h0.left h1.left
+  have h7: ∀x y z: Set, (x,y)∈FG ∧ (z,y)∈FG → z=x := by
+    intro x y z ⟨h8,h9⟩
+    have ⟨t,h10⟩ := (composition_xy F G h2 h3 x y).mp h8
+    have ⟨r,h11⟩ := (composition_xy F G h2 h3 z y).mp h9
+    have h12 := h0.right.right t y r ⟨h10.right,h11.right⟩
+    exact h1.right.right x t z ⟨h12▸h10.left,h12▸h11.left⟩
+  exact ⟨h6,⟨h6.left,h7⟩⟩
+
+theorem surjection_comp (F G A B C: Set)
+  (h0: F maps B onto C)
+  (h1: G maps A onto B)
+  (h2:= h0.left.left.left)
+  (h3:= h1.left.left.left)
+  :
+  (([h2,h3]F∘G) maps A onto C) := by
+  let FG: Set := [h2,h3]F∘G
+  have h6 := comp_is_function_AB F G A B C h1.left h0.left
+  have h7: ∀y: Set, y∈C → ∃x: Set, (x,y)∈FG := by
+    intro y h8
+    have ⟨t,h9⟩ := h0.right y h8
+    have ⟨h10,h11⟩ := xy_in_A_to_B F B C h0.left.right.right t y h9
+    have ⟨x,h12⟩ := h1.right t h10
+    have h13 := (composition_xy F G h2 h3 x y).mpr ⟨t,h12,h9⟩
+    exact ⟨x,h13⟩
+  exact ⟨h6,h7⟩
+
+theorem bijection_comp (F G A B C: Set)
+  (h0: F is a bijection from B to C)
+  (h1: G is a bijection from A to B)
+  (h2:= h0.left.right.left)
+  (h3:= h1.left.right.left)
+  :
+  (([h2,h3]F∘G) is a bijection from A to C) := by
+  let FG: Set := [h2,h3]F∘G
+  have h4 := one_to_one_comp F G h0.left h1.left
+  have h5 := surjection_comp F G A B C h0.right h1.right
+  exact ⟨h4,h5⟩

@@ -1,2 +1,5 @@
 import SetTheory.Functions.functions
-import SetTheory.Functions.one_to_one
+import SetTheory.Functions.composition
+import SetTheory.Functions.inverse
+import SetTheory.Functions.bijection_inverse
+import SetTheory.Functions.all_functionsAB
