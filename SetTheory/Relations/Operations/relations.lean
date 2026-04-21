@@ -27,3 +27,30 @@ theorem xy_in_A_to_B (R A B: Set)(h0: R is a relation from A to B) :
   intro x y h1
   have h2 := h0.right (x,y) h1
   exact (cartesian_product_xy A B x y).mp h2
+
+theorem relation_contruction (A B: Set)(P: Set → Set → Prop) :
+∃rel: Set,
+(∀x y: Set, (x,y)∈rel ↔ (x,y)∈A×B ∧ P x y) ∧
+rel is a relation from A to B := by
+  let Pd: Set → Prop := (fun d => ∃x y: Set, P x y ∧ d=(x,y))
+  have ⟨rel, h1⟩ := subset_axiom (A×B) Pd
+  have h2: ∀x y: Set, (x,y)∈rel ↔ (x,y)∈A×B ∧ P x y := by
+    intro x y
+    constructor
+    intro h3
+    have ⟨h4,h5⟩ := (h1 (x,y)).mp h3
+    have ⟨x2,y2,h6,h7⟩ :=h5
+    have ⟨h8,h9⟩ := (ordered_pair_equiv x y x2 y2).mp h7
+    have h10 := h8▸h9▸h6
+    exact ⟨h4,h10⟩
+    intro ⟨h5,h6⟩
+    exact (h1 (x,y)).mpr ⟨h5,⟨x,y,h6,rfl⟩⟩
+  have h3: rel⊆A×B := by
+    intro d h4
+    exact ((h1 d).mp h4).left
+  have h4: rel is a relation := by
+    intro d h5
+    have h6 := h3 d h5
+    have ⟨x,y,h7,h8,h9⟩ := (cartesian_product A B d).mp h6
+    exact ⟨x,y,h9⟩
+  exact ⟨rel,h2,⟨h4,h3⟩⟩
