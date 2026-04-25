@@ -3,7 +3,7 @@ import SetTheory.Relations.Index
 def function (F: Set) : Prop := F is single valued
 notation:max F "is ""a ""function" => function F
 
-def function_AB (F A B: Set) :=
+def function_AB (F A B: Set): Prop :=
   (F is a function) ∧
   (∀x: Set, x∈A → ∃y: Set, (x,y)∈F) ∧
   (F is a relation from A to B)
