@@ -35,3 +35,20 @@ theorem choice_function_C_to_UC (C: Set)
     have h22 := h20▸h21
     exact h22▸h17
   exact ⟨H,h13,h14⟩
+
+theorem choice_function_t (F I B: Set) (h0: F maps I onto B)
+(h1: ∀Y: Set, Y∈B → ∃d: Set, d∈Y) :
+∃C X: Set, (C maps I onto X) ∧
+∀i d: Set, (i,d)∈C → ∃Y: Set, (i,Y)∈F ∧ d∈Y := by
+  have ⟨H,⟨h2,h3⟩⟩ := choice_function_C_to_UC B h1
+  have h4: H is a relation := h2.left.left
+  have h5: F is a relation := h0.left.left.left
+  let HF: Set := [h4,h5]H∘F
+  have h5: ∀i d: Set, (i,d)∈HF → ∃Y: Set, (i,Y)∈F ∧ d∈Y := by
+    intro i d h6
+    have ⟨t,h7,h8⟩ := (composition_xy H F h4 h5 i d).mp h6
+    have h9 := h3 t d h8
+    exact ⟨t,h7,h9⟩
+  have h6 := comp_is_function_AB H F I B ⋃B h0.left h2
+  have h7 := surjection_on_range HF I ⋃B h6
+  exact ⟨HF,ran(HF)[h6.left.left],h7,h5⟩
