@@ -15,23 +15,28 @@ theorem strict_order_exists (R A: Set) (h0: R is a partial order on A) :
     exact (h1.left x y).mpr ⟨h5,Pxy⟩
   exact ⟨S,h2⟩
 
-noncomputable def stric_order_op (R A: Set)(h0: R is a partial order on A): Set :=
-  Classical.choose (strict_order_exists R A h0)
-notation:max "strict("R","A")["h0"]" => stric_order_op R A h0
+open Classical
+noncomputable def stric_order_op (R A: Set): Set :=
+  if h0: R is a partial order on A then
+    choose (strict_order_exists R A h0)
+  else
+    ∅
+notation:max "strict("R","A")" => stric_order_op R A
 
 theorem strict_order (R A: Set)(h0: R is a partial order on A) :
-∀x y: Set, (x,y)∈strict(R,A)[h0] ↔ (x,y)∈R ∧ x≠y :=
-Classical.choose_spec (strict_order_exists R A h0)
+∀x y: Set, (x,y)∈strict(R,A) ↔ (x,y)∈R ∧ x≠y := by
+  simp [stric_order_op, h0]
+  exact choose_spec (strict_order_exists R A h0)
 
 theorem trichotomy_law
 (R A: Set)
 (h0: R is a total order on A)
 (h1:= h0.left):
 ∀x y: Set, (x∈A ∧ y∈A) →
-((x,y)∈strict(R,A)[h1] ∧ (y,x)∉strict(R,A)[h1] ∧ x≠y) ∨
-((x,y)∉strict(R,A)[h1] ∧ (y,x)∈strict(R,A)[h1] ∧ x≠y) ∨
-((x,y)∉strict(R,A)[h1] ∧ (y,x)∉strict(R,A)[h1] ∧ x=y) := by
-  let strict: Set := strict(R,A)[h1]
+((x,y)∈strict(R,A) ∧ (y,x)∉strict(R,A) ∧ x≠y) ∨
+((x,y)∉strict(R,A) ∧ (y,x)∈strict(R,A) ∧ x≠y) ∨
+((x,y)∉strict(R,A) ∧ (y,x)∉strict(R,A) ∧ x=y) := by
+  let strict: Set := strict(R,A)
   intro x y ⟨h2, h3⟩
   by_cases x=y
   next h4 =>
