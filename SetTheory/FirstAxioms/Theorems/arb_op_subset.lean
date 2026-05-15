@@ -12,12 +12,12 @@ theorem subset_imp_union_subset (F G: Set) : F⊆G → ⋃F ⊆ ⋃G := by
 
 theorem subset_imp_int_subset
   (F G A: Set) (h0 : F ⊆ G) (h1 : A ∈ F) :
-  have h2 := h0 A h1
-  (⋂[⟨A, h2⟩] G) ⊆ (⋂[⟨A, h1⟩] F) := by
-  intro h2I x h3
-  have h4 : ∀ y : Set, y ∈ G → x ∈ y := (arbitrary_intersection G x).mp h3
+  (⋂G) ⊆ (⋂F) := by
+  intro x h3
+  have halt := h0 A h1
+  have h4 : ∀ y : Set, y ∈ G → x ∈ y := (arbitrary_intersection G ⟨A,halt⟩ x).mp h3
   have h5 : ∀ y : Set, y ∈ F → x ∈ y := by
     intro y h6
     have h7 := h0 y h6
     exact h4 y h7
-  exact (arbitrary_intersection F x).mpr h5
+  exact (arbitrary_intersection F ⟨A,h1⟩ x).mpr h5

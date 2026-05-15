@@ -10,17 +10,21 @@ theorem arbitrary_intersection_exists (F : Set) (F_nonempty : ∃ A : Set, A ∈
     exact (P_x A) A_in_F
   exact subset_construction P A px_imp_x_in_A
 
-noncomputable def arbitrary_intersection_definition
-  (F : Set) (F_nonempty : ∃ E : Set, E ∈ F) : Set :=
-  Classical.choose (arbitrary_intersection_exists F F_nonempty)
-notation "⋂[" h "] " F => arbitrary_intersection_definition F h
+open Classical
+noncomputable def arbitrary_intersection_definition (F : Set) : Set :=
+  if h : ∃ E: Set, E ∈ F then
+    choose (arbitrary_intersection_exists F h)
+  else
+    ∅ -- This is the "junk value"
+notation:max "⋂"F:max => arbitrary_intersection_definition F
 
-theorem arbitrary_intersection (F x: Set) {F_nonempty : ∃ E : Set, E ∈ F}:
-  x ∈ (⋂[F_nonempty] F) ↔ ∀ y : Set, y ∈ F → x ∈ y := by
-  exact Classical.choose_spec (arbitrary_intersection_exists F F_nonempty) x
+theorem arbitrary_intersection (F : Set) (h : ∃ E, E ∈ F) :
+  ∀ x, x ∈ (⋂F) ↔ (∀ y, y ∈ F → x ∈ y) := by
+  simp [arbitrary_intersection_definition, h]
+  exact choose_spec (arbitrary_intersection_exists F h)
 
 theorem arb_int_test (F x: Set) (F_nonempty : ∃ E : Set, E ∈ F) :
-  A∈F ∧ x∈(⋂[F_nonempty]F) → x∈A:= by
-  intro h1
-  have h2: ∀y: Set, y∈F → x∈y := (arbitrary_intersection F x).mp h1.right
+  ∀A: Set, (A∈F ∧ x∈⋂F) → x∈A:= by
+  intro A h1
+  have h2: ∀y: Set, y∈F → x∈y := (arbitrary_intersection F F_nonempty x).mp h1.right
   exact h2 A h1.left
