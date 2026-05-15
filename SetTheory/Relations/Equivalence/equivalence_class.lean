@@ -13,14 +13,17 @@ theorem equivalence_class_exists
     exact h4.left
   exact subset_construction P A h2
 
-noncomputable def equivalence_class_op
-  (R A y: Set)
-  (h0: R is an equivalence relation on A) (h1: y∈A) : Set :=
-  Classical.choose (equivalence_class_exists R A y h0 h1)
-notation:max "["R","A","h0","h1"]class("y")" =>
-  equivalence_class_op R A y h0 h1
+open Classical
+noncomputable def equivalence_class_op (R A y: Set): Set :=
+  if h0: (R is an equivalence relation on A) ∧ y∈A then
+    choose (equivalence_class_exists R A y h0.left h0.right)
+  else
+    ∅
+notation:max "["R","A"]class("y")" =>
+  equivalence_class_op R A y
 
 theorem equivalence_class (R A y: Set)
   (h0: R is an equivalence relation on A) (h1: y∈A) :
-  ∀x: Set, x∈[R,A,h0,h1]class(y) ↔ (x,y)∈R :=
-  Classical.choose_spec (equivalence_class_exists R A y h0 h1)
+  ∀x: Set, x∈[R,A]class(y) ↔ (x,y)∈R := by
+  simp [equivalence_class_op, h0,h1]
+  exact choose_spec (equivalence_class_exists R A y h0 h1)

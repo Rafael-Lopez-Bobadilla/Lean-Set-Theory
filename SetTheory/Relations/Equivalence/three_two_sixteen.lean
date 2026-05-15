@@ -5,10 +5,10 @@ theorem three_two_sixteen
   (R A r s: Set)
   (h0: R is an equivalence relation on A)
   (h01: r∈A) (h02: s∈A) :
-  [R,A,h0,h01]class(r)=[R,A,h0,h02]class(s) ↔
+  [R,A]class(r)=[R,A]class(s) ↔
   (r,s)∈R := by
-  let rclass: Set := [R,A,h0,h01]class(r)
-  let sclass : Set := [R,A,h0,h02]class(s)
+  let rclass: Set := [R,A]class(r)
+  let sclass : Set := [R,A]class(s)
   constructor
   intro h1
   have h2: (r,r)∈R := (h0.right.left).right r h01

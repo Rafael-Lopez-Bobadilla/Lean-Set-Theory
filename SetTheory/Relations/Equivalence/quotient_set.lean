@@ -4,9 +4,9 @@ theorem quotient_set_exists
   (R A: Set) (h0: R is an equivalence relation on A) :
   ∃quotient: Set,
   ∀d: Set, d∈quotient ↔
-  ∃(x: Set)(h1: x∈A), d=[R,A,h0,h1]class(x) := by
+  ∃x: Set, x∈A ∧ d=[R,A]class(x) := by
   let P: Set → Prop :=
-  (fun d => ∃(x: Set)(h1: x∈A), d=[R,A,h0,h1]class(x))
+  (fun d => ∃x: Set, x∈A ∧ d=[R,A]class(x))
   have h2: ∀d: Set, P d → d∈P(A) := by
     intro d P_d
     have ⟨x, h3, h4⟩ := P_d
@@ -20,12 +20,16 @@ theorem quotient_set_exists
     exact (power_set A d).mpr h5
   exact subset_construction P P(A) h2
 
-noncomputable def quotient_set_op
-  (R A: Set) (h0: R is an equivalence relation on A) : Set :=
-  Classical.choose (quotient_set_exists R A h0)
-notation:max "["h0"]"A:max"/"R:max => quotient_set_op R A h0
+open Classical
+noncomputable def quotient_set_op (R A: Set) : Set :=
+  if h0: R is an equivalence relation on A then
+    choose (quotient_set_exists R A h0)
+  else
+    ∅
+notation:max A:max"/"R:max => quotient_set_op R A
 
 theorem quotient_set
   (R A: Set) (h0: R is an equivalence relation on A) :
-  ∀d: Set, d∈([h0]A/R) ↔ ∃(x: Set)(h1: x∈A), d=[R,A,h0,h1]class(x) :=
-  Classical.choose_spec (quotient_set_exists R A h0)
+  ∀d: Set, d∈A/R ↔ ∃x: Set, x∈A ∧ d=[R,A]class(x) := by
+  simp [quotient_set_op, h0]
+  exact choose_spec (quotient_set_exists R A h0)
