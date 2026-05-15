@@ -6,8 +6,8 @@ theorem comp_is_function (F G: Set)
  (h1: G is a function)
  (h2:= h0.left)
  (h3:= h1.left) :
- ([h2,h3]F∘G) is a function := by
-  let FG: Set := ([h2,h3]F∘G)
+ (F∘G) is a function := by
+  let FG: Set := (F∘G)
   have h4: ∀x y z: Set, (x,y)∈FG ∧ (x,z)∈FG → y=z := by
     intro x y z ⟨h5,h6⟩
     have ⟨t,h7,h8⟩ := (composition_xy F G h2 h3 x y).mp h5
@@ -21,8 +21,8 @@ theorem comp_is_function_AB (F G A B C: Set)
 (h1: F is a function from B to C)
 (h2:= h0.left.left)
 (h3:= h1.left.left) :
-([h3,h2]F∘G) is a function from A to C := by
-  have h4: (∀x: Set, x∈A → ∃y: Set, (x,y)∈[h3,h2]F∘G) := by
+(F∘G) is a function from A to C := by
+  have h4: (∀x: Set, x∈A → ∃y: Set, (x,y)∈F∘G) := by
     intro x h5
     have ⟨t,h6⟩ := h0.right.left x h5
     have ⟨h7,h8⟩ := xy_in_A_to_B G A B h0.right.right x t h6
@@ -39,8 +39,8 @@ theorem one_to_one_comp (F G: Set)
   (h2:= h0.left.left)
   (h3:= h1.left.left)
   :
-  (([h2,h3]F∘G) is one to one) := by
-  let FG: Set := [h2,h3]F∘G
+  ((F∘G) is one to one) := by
+  let FG: Set := F∘G
   have h6 := comp_is_function F G h0.left h1.left
   have h7: ∀x y z: Set, (x,y)∈FG ∧ (z,y)∈FG → z=x := by
     intro x y z ⟨h8,h9⟩
@@ -56,8 +56,8 @@ theorem surjection_comp (F G A B C: Set)
   (h2:= h0.left.left.left)
   (h3:= h1.left.left.left)
   :
-  (([h2,h3]F∘G) maps A onto C) := by
-  let FG: Set := [h2,h3]F∘G
+  ((F∘G) maps A onto C) := by
+  let FG: Set := F∘G
   have h6 := comp_is_function_AB F G A B C h1.left h0.left
   have h7: ∀y: Set, y∈C → ∃x: Set, (x,y)∈FG := by
     intro y h8
@@ -71,11 +71,9 @@ theorem surjection_comp (F G A B C: Set)
 theorem bijection_comp (F G A B C: Set)
   (h0: F is a bijection from B to C)
   (h1: G is a bijection from A to B)
-  (h2:= h0.left.right.left)
-  (h3:= h1.left.right.left)
   :
-  (([h2,h3]F∘G) is a bijection from A to C) := by
-  let FG: Set := [h2,h3]F∘G
+  ((F∘G) is a bijection from A to C) := by
+  let FG: Set := F∘G
   have h4 := one_to_one_comp F G h0.left h1.left
   have h5 := surjection_comp F G A B C h0.right h1.right
   exact ⟨h4,h5⟩
