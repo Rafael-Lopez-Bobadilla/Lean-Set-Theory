@@ -12,11 +12,15 @@ theorem domain_exists (R: Set) :
     exact h5.left
   exact subset_construction P ⋃⋃R h2
 
-noncomputable def domain_op
-  (R: Set) (h0: R is a relation) : Set :=
-  Classical.choose (domain_exists R h0)
-notation:max "dom("R")["h0"]" => domain_op R h0
+open Classical
+noncomputable def domain_op (R: Set) : Set :=
+  if h0: R is a relation then
+    choose (domain_exists R h0)
+  else
+    ∅
+notation:max "dom("R")" => domain_op R
 
 theorem domain (R: Set) (h0: R is a relation) :
-  ∀x: Set, x∈dom(R)[h0] ↔ ∃y: Set, (x,y)∈R :=
-  Classical.choose_spec (domain_exists R h0)
+  ∀x: Set, x∈dom(R) ↔ ∃y: Set, (x,y)∈R := by
+  simp [domain_op, h0]
+  exact choose_spec (domain_exists R h0)

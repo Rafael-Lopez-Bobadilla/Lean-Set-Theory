@@ -12,11 +12,15 @@ theorem range_exists (R: Set) :
     exact h5.right
   exact subset_construction P ⋃⋃R h2
 
-noncomputable def range_op
-  (R: Set) (h0: R is a relation) : Set :=
-  Classical.choose (range_exists R h0)
-notation:max "ran("R")["h0"]" => range_op R h0
+open Classical
+noncomputable def range_op (R: Set) : Set :=
+  if h0: R is a relation then
+    choose (range_exists R h0)
+  else
+    ∅
+notation:max "ran("R")" => range_op R
 
 theorem range (R: Set) (h0: R is a relation) :
-  ∀y: Set, y∈ran(R)[h0] ↔ ∃x: Set, (x,y)∈R :=
-  Classical.choose_spec (range_exists R h0)
+  ∀y: Set, y∈ran(R) ↔ ∃x: Set, (x,y)∈R := by
+  simp [range_op, h0]
+  exact choose_spec (range_exists R h0)

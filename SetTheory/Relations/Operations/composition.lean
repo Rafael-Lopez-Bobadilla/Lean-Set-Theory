@@ -8,33 +8,37 @@ theorem composition_exists
   have h01 := h0.left
   have h02 := h0.right
   let P: Set → Prop :=  (fun d => ∃x y t: Set, (x,t)∈S ∧ (t,y)∈R ∧ d=(x,y))
-  have h2: ∀d: Set, P d → d∈dom(S)[h02]×ran(R)[h01] := by
+  have h2: ∀d: Set, P d → d∈dom(S)×ran(R) := by
     intro d P_d
     have ⟨x, y, t, h3, h4, h5⟩ := P_d
-    have h6: x∈dom(S)[h02] := (domain S h02 x).mpr ⟨t, h3⟩
-    have h7: y∈ran(R)[h01] := (range R h01 y).mpr ⟨t, h4⟩
-    exact (cartesian_product dom(S)[h02] ran(R)[h01] d).mpr ⟨x, y, h6, h7, h5⟩
-  exact subset_construction P (dom(S)[h02]×ran(R)[h01]) h2
+    have h6: x∈dom(S) := (domain S h02 x).mpr ⟨t, h3⟩
+    have h7: y∈ran(R) := (range R h01 y).mpr ⟨t, h4⟩
+    exact (cartesian_product dom(S) ran(R) d).mpr ⟨x, y, h6, h7, h5⟩
+  exact subset_construction P (dom(S)×ran(R)) h2
 
-noncomputable def composition_op
-  (R S: Set) (h0: R is a relation) (h1: S is a relation) : Set :=
-  Classical.choose (composition_exists R S ⟨h0,h1⟩)
-notation:max "["h0","h1"]"R:max"∘"S:max => composition_op R S h0 h1
+open Classical
+noncomputable def composition_op (R S: Set) : Set :=
+  if h0: R is a relation ∧ S is a relation then
+    choose (composition_exists R S h0)
+  else
+    ∅
+notation:max R:max"∘"S:max => composition_op R S
 
 theorem composition (R S: Set) (h0: R is a relation)(h1: S is a relation) :
-  ∀d: Set, d∈[h0,h1]R∘S ↔ ∃x y t: Set, (x,t)∈S ∧ (t,y)∈R ∧ d=(x,y) :=
-  Classical.choose_spec (composition_exists R S ⟨h0,h1⟩)
+  ∀d: Set, d∈R∘S ↔ ∃x y t: Set, (x,t)∈S ∧ (t,y)∈R ∧ d=(x,y) := by
+  simp [composition_op,h0,h1]
+  exact choose_spec (composition_exists R S ⟨h0,h1⟩)
 
 theorem comp_is_relation (R G: Set)
  (h0: R is a relation)(h1: G is a relation) :
- ([h0,h1]R∘G) is a relation := by
+ (R∘G) is a relation := by
  intro d h2
  have ⟨x,y,t,h3,h4,h5⟩ := (composition R G h0 h1 d).mp h2
  exact ⟨x,y,h5⟩
 
 theorem composition_xy (R G: Set)
   (h0: R is a relation) (h1: G is a relation) :
-  ∀x y: Set, (x,y)∈[h0,h1]R∘G ↔
+  ∀x y: Set, (x,y)∈R∘G ↔
   ∃t: Set, (x,t)∈G ∧ (t,y)∈R := by
   intro x y
   constructor
@@ -49,8 +53,8 @@ theorem composition_ABC (R G A B C: Set)
 (h0: R is a relation from A to B)
 (h1: G is a relation from B to C)
 (h2:= h0.left)(h3:=h1.left) :
-([h3,h2]G∘R) is a relation from A to C := by
-  have h4: [h3,h2]G∘R ⊆ A×C := by
+(G∘R) is a relation from A to C := by
+  have h4: G∘R ⊆ A×C := by
     intro d h5
     have ⟨x,y,t,h6,h7,h8⟩ := (composition G R h3 h2 d).mp h5
     have h11 := xy_in_A_to_B R A B h0 x t h6
