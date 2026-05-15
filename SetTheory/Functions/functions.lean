@@ -42,3 +42,9 @@ F maps A onto ran(F) := by
   have h4 : F is a function from A to ran(F) :=
     ⟨h0.left,h0.right.left,⟨h1,h2⟩⟩
   exact ⟨h4,h3⟩
+
+theorem x_in_dom (F A B: Set)(h0: F is a function from A to B):
+∀x: Set, x∈A → x∈dom(F) := by
+  intro x h1
+  have h2 := h0.right.left x h1
+  exact (domain F h0.left.left x).mpr h2

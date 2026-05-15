@@ -3,7 +3,7 @@ import SetTheory.Relations.OrderRelations.definitions
 theorem strict_order_exists (R A: Set) (h0: R is a partial order on A) :
 ∃S: Set, ∀x y: Set, (x,y)∈S ↔ ((x,y)∈R ∧ x≠y) := by
   let P: Set → Set → Prop := (fun x y => (x,y)∈R ∧ x≠y)
-  have ⟨S,h1⟩ := relation_contruction A A P
+  have ⟨S,h1⟩ := relation_construction A A P
   have h2: ∀x y: Set, (x,y)∈S ↔ P x y:= by
     intro x y
     constructor

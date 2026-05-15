@@ -34,7 +34,7 @@ theorem xy_in_A (R A: Set)(h0: R is a relation on A) :
   have h2 := h0.right (x,y) h1
   exact (cartesian_product_xy A A x y).mp h2
 
-theorem relation_contruction (A B: Set)(P: Set → Set → Prop) :
+theorem relation_construction (A B: Set)(P: Set → Set → Prop) :
 ∃rel: Set,
 (∀x y: Set, (x,y)∈rel ↔ (x,y)∈A×B ∧ P x y) ∧
 rel is a relation from A to B := by

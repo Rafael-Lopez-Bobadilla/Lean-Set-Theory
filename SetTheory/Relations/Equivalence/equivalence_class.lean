@@ -19,7 +19,7 @@ noncomputable def equivalence_class_op (R A y: Set): Set :=
     choose (equivalence_class_exists R A y h0.left h0.right)
   else
     ∅
-notation:max "["R","A"]class("y")" =>
+notation:max "["R:max","A:max"]class("y")" =>
   equivalence_class_op R A y
 
 theorem equivalence_class (R A y: Set)
