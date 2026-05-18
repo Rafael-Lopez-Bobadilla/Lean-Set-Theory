@@ -1,1 +1,1 @@
-import SetTheory.Functions.Index
+import SetTheory.NaturalNumbers.Index

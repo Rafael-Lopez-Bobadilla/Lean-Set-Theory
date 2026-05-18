@@ -1,5 +1,10 @@
 import SetTheory.NaturalNumbers.infinityAxiom
 
+theorem x_in_x_succ (x: Set) :
+x∈x⁺ := by
+  have h1 := (singleton x x).mpr rfl
+  exact (union_of_two x {x} x).mpr (Or.inr h1)
+
 def natural_number (x: Set) : Prop :=
 ∀I: Set, (I is inductive) → x∈I
 notation x "is ""a ""natural ""number" => natural_number x
