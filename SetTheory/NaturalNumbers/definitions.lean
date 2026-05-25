@@ -46,3 +46,10 @@ theorem succ_in_w : ∀x: Set, x∈w → x⁺∈w := by
 
 theorem w_is_inductive : w is inductive := by
   exact ⟨zero_in_w, succ_in_w⟩
+
+theorem zero_not_succ (n: Set) : ∅≠n⁺ := by
+  intro h1
+  have h2 := x_in_x_succ n
+  have h3 := empty_axiom n
+  have h4 := h1 ▸ h2
+  exact h3 h4

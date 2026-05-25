@@ -60,3 +60,22 @@ rel is a relation from A to B := by
     have ⟨x,y,h7,h8,h9⟩ := (cartesian_product A B d).mp h6
     exact ⟨x,y,h9⟩
   exact ⟨rel,h2,⟨h4,h3⟩⟩
+
+theorem cartesian_is_relation (A B: Set):
+(A×B) is a relation := by
+  intro d h1
+  have ⟨x,y,h2,h3,h4⟩ := (cartesian_product A B d).mp h1
+  exact ⟨x,y,h4⟩
+
+theorem relation_diff_is_relation
+(R A B d: Set)(h0: R is a relation from A to B):
+(R\d) is a relation from A to B := by
+  have h1: (R\d) is a relation := by
+    intro p h1
+    have ⟨h2,h3⟩ := (difference R d p).mp h1
+    exact h0.left p h2
+  have h2: (R\d)⊆A×B := by
+    intro p h2
+    have ⟨h2,h3⟩ := (difference R d p).mp h2
+    exact h0.right p h2
+  exact ⟨h1,h2⟩

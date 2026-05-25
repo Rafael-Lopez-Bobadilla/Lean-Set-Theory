@@ -14,7 +14,7 @@ noncomputable def f_of_x_op (F x: Set) : Set :=
     choose (f_of_x_exists F x h0.left h0.right)
   else
     ∅
-notation:max F:max"("x")" => f_of_x_op F x
+macro:max F:term:max noWs "(" x:term ")" : term => `(f_of_x_op $F $x)
 
 theorem f_of_x (F x: Set) (h0: F is a function) (h1: x∈dom(F)):
   (x,F(x))∈F := by
