@@ -1,4 +1,5 @@
 import SetTheory.Functions.functions
+import SetTheory.Functions.f_of_x
 
 theorem identity_exists (A: Set) :
 ∃I: Set, ∀d: Set, d∈I ↔ d∈A×A ∧ ∃x: Set, d=(x,x):= by
@@ -79,3 +80,13 @@ I[A] is a bijection from A to A := by
   have h1 := identity_is_injection A
   have h2 := identity_is_surjection A
   exact ⟨h1,h2⟩
+
+theorem f_of_indentity (A: Set) :
+∀d: Set, d∈A → I[A](d)=d := by
+  intro d h1
+  have h2 := identity_is_functionAA A
+  have h3 := (domain I[A] h2.left.left d).mpr (h2.right.left d h1)
+  have h3: (d,I[A](d))∈I[A] := f_of_x I[A] d h2.left h3
+  have h4 := (cartesian_product_xy A A d d).mpr ⟨h1,h1⟩
+  have h5: (d,d)∈I[A] := (identity A (d,d)).mpr ⟨h4,d,rfl⟩
+  exact h2.left.right d I[A](d) d ⟨h3,h5⟩

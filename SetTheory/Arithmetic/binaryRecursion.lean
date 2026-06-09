@@ -66,7 +66,6 @@ theorem binary_recursion_on_w
     have h5 := (cartesian_product_xy w w m ∅).mpr ⟨h4,zero_in_w⟩
     have h6 := fx_on_A g w w h0 m h4
     have h7 := (cartesian_product_xy (w×w) w (m,∅) g(m)).mpr ⟨h5,h6⟩
-    -- g(m)=pm(∅)
     have ⟨h8,h9,h10⟩ := (binary_to_recursion f g(m) m h1 h6 h4)
     have h11 := (domain pm[f,g(m),m] h8.left.left ∅).mpr (h8.right.left ∅ zero_in_w)
     have h12 := f_of_x pm[f,g(m),m] ∅ h8.left h11
@@ -87,7 +86,6 @@ theorem binary_recursion_on_w
       have h29 := (domain pm[f,g(m),m] h8.left.left n⁺).mpr (h8.right.left n⁺ (succ_in_w n h24.right))
       have h30 := f_of_x pm[f,g(m),m] n⁺ h8.left h29
       have h31: f((u,m))=pm[f,g(m),m](n⁺) := h8.left.right n⁺ f((u,m)) pm[f,g(m),m](n⁺) ⟨h28,h30⟩
---  let P := (fun x y => ∃m n: Set, (m,n)∈w×w ∧ x=(m,n) ∧ y=pm[f,g(m),m](n))
       have h32 := (cartesian_product_xy w w m n⁺).mpr ⟨h4,(succ_in_w n h24.right)⟩
       have h33 := (cartesian_product_xy (w×w) w (m,n) u).mp h16
       have h34 := (cartesian_product_xy w w u m).mpr ⟨h33.right,h4⟩
@@ -97,7 +95,6 @@ theorem binary_recursion_on_w
     exact ⟨h14,h15⟩
   have h5: (∀x: Set, x∈w×w → ∃y: Set, (x,y)∈h) := by
     intro x h5
---  let P := (fun x y => ∃m n: Set, (m,n)∈w×w ∧ x=(m,n) ∧ y=pm[f,g(m),m](n))
     have ⟨m,n,h6,h7,h8⟩ := (cartesian_product w w x).mp h5
     have h9 := h8 ▸ h5
     have h10 := fx_on_A g w w h0 m h6
