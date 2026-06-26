@@ -75,7 +75,13 @@ m+∅=m ∧ m+n⁺=(m+n)⁺ := by
   have h4 := (addition_function.right m h1).right n h2
   exact ⟨h3,h4⟩
 
-theorem m_plus_one (m : Set) (h1 : m ∈ w) : m + ∅⁺ = m⁺ := by
-  have ⟨h2,(h3: m+∅⁺=(m+∅)⁺)⟩ := (addition m ∅ h1 zero_in_w)
+notation "one" => ∅⁺
+theorem m_plus_one (m : Set) (h1 : m ∈ w) : m + one = m⁺ := by
+  have ⟨h2,(h3: m+one=(m+∅)⁺)⟩ := (addition m ∅ h1 zero_in_w)
   have h4 := h2 ▸ h3
   exact h4
+
+theorem addition_in_w (m n: Set) (h1: m∈w)(h2: n∈w) :
+m+n∈w := by
+  have h3 := (cartesian_product_xy w w m n).mpr ⟨h1,h2⟩
+  exact fx_on_A Add (w×w) w addition_function.left (m,n) h3
