@@ -24,38 +24,29 @@ theorem addition_function_exists :
     have h17 := h16 ▸ h12
     exact h17.symm
   have h6: f is a function from w×w to w := ⟨⟨h3.left,h5⟩,h4,h3⟩
+  have hf: ∀k m: Set, (k∈w ∧ m∈w) →  f((k,m))=k⁺ := by
+    intro k m ⟨h7,h8⟩
+    have h9 := (cartesian_product_xy w w k m).mpr ⟨h7,h8⟩
+    have h10 := (domain f h6.left.left (k,m)).mpr (h6.right.left (k,m) h9)
+    have h11 := f_of_x f (k,m) h6.left h10
+    have ⟨h12,x,y,h13,h14⟩ := (h2 (k,m) f((k,m))).mp h11
+    have h15 := (ordered_pair_equiv x y k m).mp h13.symm
+    exact h15.left ▸ h14
   have ⟨A,h7,h8⟩ := binary_recursion_on_w I[w] f h1 h6
   have h9 : ∀m: Set, m∈w → (A((m,∅)) = m ∧
   ∀n: Set, n∈w → A((m,n⁺))=A((m,n))⁺) := by
     intro m h9
-    have ⟨h10,h11⟩ := h8 m h9
-    have h12 := f_of_indentity w m h9
-    have h13 := (h12 ▸ h10)
-    have h14 := (cartesian_product_xy w w m ∅).mpr ⟨h9,zero_in_w⟩
-    have h15 := (domain A h7.left.left (m,∅)).mpr (h7.right.left (m,∅) h14)
-    have h16: ((m,∅),A((m,∅)))∈A := f_of_x A (m,∅) h7.left h15
-    have h17 := h7.left.right (m,∅) m A((m,∅)) ⟨h13,h16⟩
-    have h18 := h17.symm
-    have h19: ∀n: Set, n∈w → A((m,n⁺))=A((m,n))⁺ := by
-      intro n h20
-      have h21 := (cartesian_product_xy w w m n).mpr ⟨h9,h20⟩
-      have h22 := (domain A h7.left.left (m,n)).mpr (h7.right.left (m,n) h21)
-      have h23: ((m,n),A((m,n)))∈A := f_of_x A (m,n) h7.left h22
-      have h24: ((m,n⁺),f((A((m,n)),m)))∈A := (h8 m h9).right n A((m,n)) h23
-      have h25 := xy_in_A_to_B A (w×w) w h7.right.right (m,n) A((m,n)) h23
-      have h26 := (cartesian_product_xy w w A((m,n)) m).mpr ⟨h25.right,h9⟩
-      have h27 := (domain f h6.left.left (A((m,n)),m)).mpr (h6.right.left (A((m,n)),m) h26)
-      have h28 := f_of_x f (A((m,n)),m) h6.left h27
-      have ⟨x,y,h29,h30⟩ := ((h2 (A((m,n)),m) f((A((m,n)),m))).mp h28).right
-      have ⟨h31,h32⟩ := (ordered_pair_equiv A((m,n)) m x y).mp h29
-      have h33 := h31 ▸ h31 ▸ h30
-      have h34: ((m,n⁺),A((m,n))⁺)∈A := h33 ▸ h24
-      have h35 := (cartesian_product_xy w w m n⁺).mpr ⟨h9,(succ_in_w n h20)⟩
-      have h36 := (domain A h7.left.left (m,n⁺)).mpr (h7.right.left (m,n⁺) h35)
-      have h37 := f_of_x A (m,n⁺) h7.left h36
-      have h38 := h7.left.right (m,n⁺) A((m,n))⁺ A((m,n⁺)) ⟨h34,h37⟩
-      exact h38.symm
-    exact ⟨h18,h19⟩
+    have h10: A((m,∅))=I[w](m):= (h8 m h9).left
+    have h11 := f_of_indentity w m h9
+    have h12 := h10 ▸ h11
+    have h13: ∀n: Set, n∈w → A((m,n⁺))=A((m,n))⁺ := by
+      intro n h13
+      have h14 := (h8 m h9).right n h13
+      have h15 := (cartesian_product_xy w w m n).mpr ⟨h9,h13⟩
+      have h16 := fx_on_A A (w×w) w h7 (m,n) h15
+      have h17 := hf A((m,n)) m ⟨h16,h9⟩
+      exact h17 ▸ h14
+    exact ⟨h12,h13⟩
   exact ⟨A,h7,h9⟩
 
 noncomputable def addition_function_op : Set := Classical.choose (addition_function_exists)

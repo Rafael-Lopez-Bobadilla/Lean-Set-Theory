@@ -18,6 +18,12 @@ theorem multiplication_function_exists :
     have h5 := (h1.left x ∅).mpr ⟨h4,⟨h3,rfl⟩⟩
     exact ⟨∅,h5⟩
   have h4: g is a function from w to w := ⟨⟨h1.right.left,h2⟩,h3,h1.right⟩
+  have hg: ∀m: Set, m∈w → g(m)=∅ := by
+    intro m h5
+    have h6 := (domain g h4.left.left m).mpr (h4.right.left m h5)
+    have h7 := f_of_x g m h4.left h6
+    have ⟨h8,h9,h10⟩ := (h1.left m g(m)).mp h7
+    exact h10
   let P2 := (fun x y => ∃k m: Set, x=(k,m) ∧ y=k+m)
   have ⟨f,h5⟩ := relation_construction (w×w) w P2
   have h6: (∀x: Set, x∈w×w → ∃y: Set, (x,y)∈f) := by
@@ -36,39 +42,28 @@ theorem multiplication_function_exists :
     have h19 := h18 ▸ h14
     exact h19.symm
   have h8: f is a function from (w×w) to w := ⟨⟨h5.right.left,h7⟩,h6,h5.right⟩
+  have hf: ∀k m: Set, (k∈w ∧ m∈w) → f((k,m))=k+m := by
+    intro k m ⟨h9,h10⟩
+    have h11 := (cartesian_product_xy w w k m).mpr ⟨h9,h10⟩
+    have h12 := (domain f h8.left.left (k,m)).mpr (h8.right.left (k,m) h11)
+    have h13 := f_of_x f (k,m) h8.left h12
+    have ⟨h14,x,y,h15,h16⟩ := (h5.left (k,m) f((k,m))).mp h13
+    have ⟨h17,h18⟩ := (ordered_pair_equiv k m x y).mp h15
+    have h19 := h17.symm ▸ h18.symm ▸ h16
+    exact h19
   have ⟨M,h9,h10⟩ := binary_recursion_on_w g f h4 h8
   have h11: ∀m: Set, m∈w → (M((m,∅)) = ∅ ∧
   ∀n: Set, n∈w → M((m,n⁺))=M((m,n))+m) := by
     intro m h11
-    have h12: ((m,∅),g(m))∈M := (h10 m h11).left
-    have h13 := (domain g h4.left.left m).mpr (h4.right.left m h11)
-    have h14: (m,g(m))∈g := f_of_x g m h4.left h13
-    have h15 := (h1.left m g(m)).mp h14
-    have ⟨h16,h17⟩ := h15.right
-    have h18 := (cartesian_product_xy w w m ∅).mpr ⟨h11,zero_in_w⟩
-    have h19 := (domain M h9.left.left (m,∅)).mpr (h9.right.left (m,∅) h18)
-    have h20: ((m,∅),M((m,∅)))∈M := f_of_x M (m,∅) h9.left h19
-    have h21 := h9.left.right (m,∅) g(m) M((m,∅)) ⟨h12,h20⟩
-    have h22 := h17 ▸ h21
-    have h23: M((m,∅))=∅ := h22.symm
+    have h12 := (h10 m h11).left
+    have h13 := hg m h11
+    have h14 := h13 ▸ h12
     have h24: ∀n: Set, n∈w → M((m,n⁺))=M((m,n))+m := by
       intro n h24
       have h25 := (cartesian_product_xy w w m n).mpr ⟨h11,h24⟩
-      have h26 := (domain M h9.left.left (m,n)).mpr (h9.right.left (m,n) h25)
-      have h27: ((m,n),M((m,n)))∈M := f_of_x M (m,n) h9.left h26
-      have h28: ((m,n⁺),f((M((m,n)),m)))∈M := (h10 m h11).right n M((m,n)) h27
-      have h29 := fx_on_A M (w×w) w h9 (m,n) h25
-      have h30 := (cartesian_product_xy w w M((m,n)) m).mpr ⟨h29,h11⟩
-      have h31 := (domain f h8.left.left (M((m,n)),m)).mpr (h8.right.left (M((m,n)),m) h30)
-      have h32 := f_of_x f (M((m,n)),m) h8.left h31
-      have ⟨h33,k,r,h34,h35⟩ := (h5.left (M((m,n)),m) f((M((m,n)),m))).mp h32
-      have ⟨h36,h37⟩ := (ordered_pair_equiv M((m,n)) m k r).mp h34
-      have h38 := h36 ▸ h36 ▸ h37 ▸ h37 ▸ h35
-      have h39 := h38 ▸ h28
-      have h40 := (cartesian_product_xy w w m n⁺).mpr ⟨h11,succ_in_w n h24⟩
-      have h41 := (domain M h9.left.left (m,n⁺)).mpr (h9.right.left (m,n⁺) h40)
-      have h42 := f_of_x M (m,n⁺) h9.left h41
-      have h43 := (h9.left.right (m,n⁺) M((m,n))+m M((m,n⁺)) ⟨h39,h42⟩)
-      exact h43.symm
-    exact ⟨h23,h24⟩
+      have h27 := fx_on_A M (w×w) w h9 (m,n) h25
+      have h28 := hf M((m,n)) m ⟨h27,h11⟩
+      have h29 := (h10 m h11).right n h24
+      exact h28 ▸ h29
+    exact ⟨h14,h24⟩
   exact ⟨M,h9,h11⟩
