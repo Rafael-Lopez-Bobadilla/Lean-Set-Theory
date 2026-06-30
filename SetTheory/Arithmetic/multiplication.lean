@@ -67,3 +67,26 @@ theorem multiplication_function_exists :
       exact h28 ▸ h29
     exact ⟨h14,h24⟩
   exact ⟨M,h9,h11⟩
+
+noncomputable def multiplication_function_op : Set :=
+Classical.choose (multiplication_function_exists)
+notation "Mult" => multiplication_function_op
+
+theorem multiplication_function : (Mult is a function from w×w to w) ∧
+∀m: Set, m∈w → (Mult((m,∅)) = ∅ ∧
+∀n: Set, n∈w → Mult((m,n⁺))=Mult((m,n))+m) := by
+  exact Classical.choose_spec (multiplication_function_exists)
+
+noncomputable def multiplication_op (m n: Set) : Set := Mult((m,n))
+notation:max m:max"·"n:max => multiplication_op m n
+
+theorem multiplication (m n: Set)(h1: m∈w)(h2: n∈w) :
+m·∅=∅ ∧ m·n⁺=(m·n)+m := by
+  have h3 := (multiplication_function.right m h1).left
+  have h4 := (multiplication_function.right m h1).right n h2
+  exact ⟨h3,h4⟩
+
+theorem multiplication_in_w (m n: Set) (h1: m∈w)(h2: n∈w) :
+m·n∈w := by
+  have h3 := (cartesian_product_xy w w m n).mpr ⟨h1,h2⟩
+  exact fx_on_A Mult (w×w) w multiplication_function.left (m,n) h3
